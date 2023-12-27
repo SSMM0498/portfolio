@@ -10,6 +10,12 @@ section .services {
     animation: sliding 50s linear infinite;
 }
 
+@media only screen and (max-width: 650px) {
+  section .services {
+    width: 500vw;
+  }
+}
+
 section .services:hover {
     animation-play-state: paused;
 }

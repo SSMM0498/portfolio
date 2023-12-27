@@ -1,49 +1,65 @@
 section {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-    transition: transform 0.5s ease-in-out;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  transition: transform 0.5s ease-in-out;
 }
 
 section.banner,
 section.center {
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 section:not(.banner) {
-    padding: 2rem 2rem 0;
+  padding: 2rem 2rem 0;
 }
 
 section:not(.active) {
-    transform: translateY(150%);
+  transform: translateY(150%);
 }
 
 section:not(.banner) h1,
 section:not(.banner) h2 {
-    margin-left: 100px;
-    color: var(--second);
-    opacity: 0;
-    transform: translateY(50px);
+  margin-left: 100px;
+  color: var(--second);
+  opacity: 0;
+  transform: translateY(50px);
 }
 
 section:not(.banner) h1 {
-    font-size: 5rem;
-    line-height: 3rem;
-    margin-bottom: 2.5rem;
-    transition: transform 0.25s ease-in-out 0.5s, opacity 0.25s ease-in-out 0.5s;
+  font-size: 5rem;
+  line-height: 3rem;
+  margin-bottom: 2.5rem;
+  transition: transform 0.25s ease-in-out 0.5s, opacity 0.25s ease-in-out 0.5s;
 }
 
 section:not(.banner) h2 {
-    margin-bottom: 1.5rem;
-    transition: transform 0.25s ease-in-out 0.75s,
-        opacity 0.25s ease-in-out 0.75s;
+  margin-bottom: 1.5rem;
+  transition: transform 0.25s ease-in-out 0.75s,
+    opacity 0.25s ease-in-out 0.75s;
 }
 
 section.active:not(.banner) h1,
 section.active:not(.banner) h2 {
-    opacity: 1;
-    transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media only screen and (max-width: 650px) {
+  section:not(.banner) h1,
+  section:not(.banner) h2 {
+    margin-left: 0;
+  }
+
+  section:not(.banner) h1 {
+    margin: 4rem 0 1rem;
+    font-size: 3.5rem;
+  }
+
+  section:not(.banner) h2 {
+    font-size: 1.25rem;
+  }
 }
