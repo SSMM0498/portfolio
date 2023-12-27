@@ -1,0 +1,140 @@
+section .skill {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 1000vw;
+    height: 100%;
+    padding: 25px 0;
+    animation: sliding-1 150s linear infinite;
+}
+
+section .skill:hover {
+    animation-play-state: paused;
+}
+
+section .skill .tech-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
+    width: 10%;
+    height: 100%;
+    margin: 0 1rem;
+    color: var(--prime);
+    cursor: pointer;
+}
+
+section .skill .tech-card .title {
+    position: absolute;
+    font-family: Poppins;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--second);
+    color: var(--prime);
+    border-radius: 5px;
+    z-index: 3;
+    box-shadow: 10px 10px 3rem -8px rgba(0, 0, 0, 0.75);
+    animation: float 5s cubic-bezier(0.175, 0.885, 1, 2) infinite;
+    transition: all 1s ease-in-out;
+}
+
+section .skill .tech-card .description {
+    position: absolute;
+    bottom: 70%;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    width: 75%;
+    z-index: 3;
+    opacity: 0;
+    color: white;
+    transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+section .skill .tech-card:nth-child(2n + 1) .title {
+    animation-duration: 3.5s;
+}
+
+section .skill .tech-card:nth-child(2n) .title {
+    animation-duration: 4.5s;
+}
+
+section .skill .tech-card:hover .title {
+    animation-play-state: paused;
+}
+
+section .skill .tech-card:hover .description {
+    opacity: 1;
+    transform: translateY(-40%);
+}
+
+.c1 {
+    top: 40%;
+    left: -5%;
+    width: 200px;
+    height: 50px;
+    font-size: 1.5rem;
+}
+
+.c2 {
+    top: 60%;
+    right: 5%;
+    width: 100px;
+    height: 100px;
+    font-size: 2rem;
+    font-weight: 900;
+    border-radius: 100px;
+}
+
+.c3 {
+    bottom: 5%;
+}
+
+section .skill .tech-back {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 50%;
+    border-radius: 7.5px;
+    box-shadow: 10px 10px 3rem -8px rgba(0, 0, 0, 0.507);
+    background-color: #bbbbbb17;
+    color: var(--prime);
+    transition: height 0.75s ease-in-out;
+    overflow: hidden;
+}
+
+section .skill .tech-card:hover > .tech-back {
+    height: 100%;
+}
+
+section .skill .tech-card:hover:after {
+    height: 100%;
+}
+
+section .skill .tech-back::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 325px;
+    height: 325px;
+    border-radius: 100%;
+    color: var(--prime);
+    background-color: #000;
+    transition: transform 1.5s ease-out;
+}
+
+section .skill .tech-card:hover > .tech-back::after {
+    transform: translate(0, -100%) scale(150%);
+}
+
+section .skill .tech-card img {
+    position: absolute;
+    bottom: 15%;
+    width: auto;
+    height: 30vh;
+    z-index: 2;
+}

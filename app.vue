@@ -1,0 +1,32 @@
+<script lang="ts" setup>
+useHead({
+	title: "Portfolio | SSaliou0498",
+	htmlAttrs: {
+		lang: "en",
+	},
+	meta: [
+		{ charset: "utf-8" },
+		{
+			name: "viewport",
+			content: "width=device-width, initial-scale=1",
+		},
+		{ hid: "description", name: "description", content: "" },
+		{ name: "format-detection", content: "telephone=no" },
+	],
+	link: [
+		{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+		{
+			rel: "stylesheet",
+			href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css",
+		},
+	],
+});
+</script>
+<template>
+	<Html>
+		<Body>
+			<NuxtLoadingIndicator :height="5" :duration="3000" :throttle="400" />
+			<NuxtPage />
+		</Body>
+	</Html>
+</template>

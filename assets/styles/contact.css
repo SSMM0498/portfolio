@@ -1,0 +1,62 @@
+.content {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+}
+
+.contact {
+    display: flex;
+    width: 55%;
+    height: 75vh;
+    margin-left: 100px;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.contact-text {
+    font-family: Poppins;
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    font-size: 2.75rem;
+    margin-left: 100px;
+    line-height: 3rem;
+}
+
+.contact-text span {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.contact input,
+.contact button,
+.contact textarea {
+    font-family: Poppins;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    border: 1.5px solid var(--second);
+    color: var(--second);
+    background-color: #d8d7d73e;
+    padding: 10px;
+    outline: none;
+    margin-bottom: 1rem;
+}
+
+.contact input,
+.contact textarea {
+    width: 100%;
+}
+
+.contact textarea {
+    height: 50%;
+    margin-bottom: 2rem;
+}
+
+.contact button {
+    cursor: pointer;
+    padding: 10px 25px;
+    color: var(--prime);
+    background-color: var(--second);
+}
