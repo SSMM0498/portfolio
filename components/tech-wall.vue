@@ -22,7 +22,7 @@ const current = ref(0)
 onMounted(() => {
   setInterval(() => {
     current.value = Math.floor(Math.random() * 168)
-  }, 125)
+  }, 500)
 })
 </script>
 <style>
