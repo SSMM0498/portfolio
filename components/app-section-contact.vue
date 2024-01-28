@@ -7,24 +7,24 @@
         respond quickly.
       </div>
       <form v-else @submit.prevent="sendMessage" class="contact" action="">
-        <div v-if="errored">
-          Something went wrong. Did you fill out all of the
-          fields?
-        </div>
         <input required v-model="form.name" name="name" type="name" placeholder="Your full name" />
         <input required v-model="form.email" name="email" type="email" placeholder="Your email" />
         <input required v-model="form.phoneNumber" name="phoneNumber" type="text" placeholder="Your phone number" />
         <input required v-model="form.subject" name="subject" type="text" placeholder="Subject" />
         <textarea required v-model="form.message" name="message" placeholder="The message"></textarea>
+        <div v-if="errored" class="mb-4">
+          Something went wrong. Did you fill out all of the
+          fields?
+        </div>
         <button>
           <template v-if="loading">Loading...</template>
           <template v-if="!loading">Submit</template>
         </button>
       </form>
       <p class="contact-text">
-        <span>Have a question ?</span> Send us a mail <br />
+        <span>Have a question ?</span> Send me a mail <br />
         and let's talk about <br />
-        your all of your needs
+        all of your needs
       </p>
     </div>
   </section>
