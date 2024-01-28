@@ -8,7 +8,7 @@
       </div>
       <form v-else @submit.prevent="sendMessage" class="contact" action="">
         <div v-if="errored">
-          Bummer, Something went wrong. Did you fill out all of the
+          Something went wrong. Did you fill out all of the
           fields?
         </div>
         <input required v-model="form.name" name="name" type="name" placeholder="Your full name" />

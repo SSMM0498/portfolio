@@ -123,7 +123,7 @@ onMounted(() => {
   opacity: 1;
   border: 2px solid var(--second);
   border-radius: 32px;
-  animation: 5s bounce 7.5s infinite;
+  animation: 10s bounce 7.5s infinite;
   transition: transform, height, opacity .2s 5.5s ease-in;
 }
 
