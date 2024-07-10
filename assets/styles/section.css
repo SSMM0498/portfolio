@@ -37,6 +37,7 @@ section:not(.banner) h1 {
 }
 
 section:not(.banner) h2 {
+  line-height: 2rem;
   margin-bottom: 1.5rem;
   transition: transform 0.25s ease-in-out 0.75s,
     opacity 0.25s ease-in-out 0.75s;

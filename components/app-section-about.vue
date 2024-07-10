@@ -2,7 +2,7 @@
   <section id="#AboutMe">
     <h1>About Me</h1>
     <h2>
-      I'm an AI Enthusiast 🧠, FullStack🌟 Engineer, and passionate about Python 🐍, Golang ⚓, VueJS👽, ReactJS🚀, Typescript❤️, Node🍀, ExpressJS🤖, NestJS🧩 and NuxtJS 💚. With a 100% backend start, I love the Golang philosophy, but I prefer using the NodeJS stack for its simplicity and efficiency. My passion for drawing has inspired me to add frontend as a new string to my bow to bring beautiful designs to life with VueJS.
+      I'm an AI enthusiast 🧠, fullstack engineer🔧, and a big tech lover 💻. With a 100% backend start⚙️, I love the golang philosophy🐹, but I prefer using the nodejs stack for its simplicity and efficiency⚡️. My passion ✨ for drawing 🎨 has inspired me to add frontend as a new string to my bow🏹 to bring beautiful designs to life with vuejs🌟.
     </h2>
     <div class="skill">
       <div v-for="(tech, key) in techList" :key="key" class="tech-card">
