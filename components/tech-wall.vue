@@ -10,13 +10,14 @@
 import { onMounted, ref } from 'vue'
 import techList from '~/utils/techList'
 
+// Remove random sorting to ensure deterministic rendering
 const giantList = [
   ...techList,
   ...techList,
   ...techList,
   ...techList,
   ...techList,
-].sort(() => Math.random() - 0.5)
+]
 
 const current = ref(0)
 onMounted(() => {

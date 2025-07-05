@@ -1,6 +1,6 @@
 <template>
   <div class="content" :class="{ switch: isSwitching }">
-    <h1 ref="title" :style="{ '--dot-top-position': dotTopPosition }" class="title">{{ titles[current] }}</h1>
+    <h1 ref="title" :style="{ '--dot-top-position': dotTopPosition, '--dot-left-position': dotLeftPosition }" class="title">{{ titles[current] }}</h1>
   </div>
 </template>
 <script setup lang="ts">
@@ -11,6 +11,7 @@ const titles = ['ınnovative', 'productıve', 'creatıve']
 const current = ref(0)
 const isSwitching = ref(false)
 const title = ref<HTMLElement | null>(null)
+const dotTopPosition = ref('-90%') // Server-safe default value
 
 const switchTitle = () => {
   isSwitching.value = true
@@ -31,20 +32,21 @@ const dotLeftPosition = computed(() => {
   }
 });
 
-const dotTopPosition = computed(() => {
-  if (title.value === null) {
-    return '-90%'
-  } else {
+const updateDotPosition = () => {
+  if (title.value) {
     const titleRect = title.value.getBoundingClientRect().height / 2
-    return '-' + titleRect + 'px'
+    dotTopPosition.value = '-' + titleRect + 'px'
   }
-});
+}
 
-onMounted(() =>
+onMounted(() => {
+  // Calculate dot position after mount when DOM is available
+  updateDotPosition()
+  
   setInterval(() => {
     switchTitle()
   }, 7000)
-)
+})
 </script>
 <style scoped>
 .content {
@@ -70,8 +72,8 @@ onMounted(() =>
 .title::after {
   position: absolute;
   content: '.';
-  top: v-bind('dotTopPosition');
-  left: v-bind('dotLeftPosition');
+  top: var(--dot-top-position);
+  left: var(--dot-left-position);
   text-shadow: 0 0 0.15em var(--luminescence);
   animation: rainbow 5s ease-in-out infinite, float 3.7s ease-in-out infinite;
 }
