@@ -7,14 +7,15 @@
       <div class="circle1" :class="{ right: isUpperHome }"></div>
       <div class="circle2" :class="{ left: isUpperHome }"></div>
       <div :class="{ full: state.currentSection > 0, glass: true }"></div>
-      <app-aside :class="{ active: state.currentSection === 4 }" />
+      <app-aside :class="{ active: state.currentSection === 5 }" />
       <app-section-hero :class="{ active: state.currentSection === 0 }" />
-      <app-section-about :class="{ active: state.currentSection === 1 }" />
-      <app-section-service :class="{ active: state.currentSection === 2 }" />
-      <app-section-work :class="{ active: state.currentSection === 3 }" />
-      <app-section-contact :class="{ active: state.currentSection === 4 }" />
+      <app-section-team :class="{ active: state.currentSection === 1 }" />
+      <app-section-about :class="{ active: state.currentSection === 2 }" />
+      <app-section-service :class="{ active: state.currentSection === 3 }" />
+      <app-section-work :class="{ active: state.currentSection === 4 }" />
+      <app-section-contact :class="{ active: state.currentSection === 5 }" />
     </main>
-    <button class="scroll-down" v-show="state.currentSection < 4" @click="increment"><i></i></button>
+    <button class="scroll-down" v-show="state.currentSection < 5" @click="increment"><i></i></button>
   </div>
 </template>
 <script setup lang="ts">
@@ -53,7 +54,7 @@ const handleScroll = (evt: Event) => {
   }
 
   if (ticking !== true && !state.isMenuActive) {
-    if (delta <= -scrollSensitivitySetting && state.currentSection < 4) {
+    if (delta <= -scrollSensitivitySetting && state.currentSection < 5) {
       ticking = true
       increment()
       slideDurationTimeout(1000)
@@ -72,7 +73,7 @@ const handleTouchMove = (evt: TouchEvent) => {
   const touchDeltaY = evt.touches[0].clientY - startY
 
   if (ticking !== true && !state.isMenuActive) {
-    if (touchDeltaY <= -scrollSensitivitySetting && state.currentSection < 4) {
+    if (touchDeltaY <= -scrollSensitivitySetting && state.currentSection < 5) {
       ticking = true
       increment()
       slideDurationTimeout(1000)

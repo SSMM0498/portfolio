@@ -9,16 +9,19 @@
           <a href="#Home" @click.prevent="() => handleNavigation(0)">Accueil</a>
         </li>
         <li>
-          <a href="#AboutUs" @click.prevent="() => handleNavigation(1)">Notre Équipe</a>
+          <a href="#Team" @click.prevent="() => handleNavigation(1)">Notre Équipe</a>
         </li>
         <li>
-          <a href="#Services" @click.prevent="() => handleNavigation(2)">Nos Services</a>
+          <a href="#AboutUs" @click.prevent="() => handleNavigation(2)">Nos Compétences</a>
         </li>
         <li>
-          <a href="#Projects" @click.prevent="() => handleNavigation(3)">Nos Projets</a>
+          <a href="#Services" @click.prevent="() => handleNavigation(3)">Nos Services</a>
         </li>
         <li>
-          <a href="#Contact" @click.prevent="() => handleNavigation(4)">Rejoindre la Tontine</a>
+          <a href="#Projects" @click.prevent="() => handleNavigation(4)">Nos Projets</a>
+        </li>
+        <li>
+          <a href="#Contact" @click.prevent="() => handleNavigation(5)">Rejoindre la Tontine</a>
         </li>
       </ul>
     </nav>
