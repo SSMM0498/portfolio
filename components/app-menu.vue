@@ -6,19 +6,19 @@
     <nav class="nav">
       <ul>
         <li>
-          <a href="#Home" @click.prevent="() => handleNavigation(0)">Home</a>
+          <a href="#Home" @click.prevent="() => handleNavigation(0)">Accueil</a>
         </li>
         <li>
-          <a href="#AboutMe" @click.prevent="() => handleNavigation(1)">About Me</a>
+          <a href="#AboutUs" @click.prevent="() => handleNavigation(1)">Notre Équipe</a>
         </li>
         <li>
-          <a href="#MyServices" @click.prevent="() => handleNavigation(2)">My Services</a>
+          <a href="#Services" @click.prevent="() => handleNavigation(2)">Nos Services</a>
         </li>
         <li>
-          <a href="#MyWorks" @click.prevent="() => handleNavigation(3)">My Works</a>
+          <a href="#Projects" @click.prevent="() => handleNavigation(3)">Nos Projets</a>
         </li>
         <li>
-          <a href="#ContactMe" @click.prevent="() => handleNavigation(4)">Contact Me</a>
+          <a href="#Contact" @click.prevent="() => handleNavigation(4)">Rejoindre la Tontine</a>
         </li>
       </ul>
     </nav>

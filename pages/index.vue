@@ -1,8 +1,8 @@
 <template>
   <div class="body" :class="{ hide: state.currentSection > 0 }">
     <app-menu />
-    <div class="logo">ssaliou0498</div>
-    <p class="message">With me be in<span>nova</span>tive, <span>prod</span>uctive & <span>crea</span>tive</p>
+    <div class="logo">Tontine Dev & Design</div>
+    <p class="message">Digitaliser votre activité n'a jamais été aussi simple</p>
     <main>
       <div class="circle1" :class="{ right: isUpperHome }"></div>
       <div class="circle2" :class="{ left: isUpperHome }"></div>
@@ -153,7 +153,7 @@ onMounted(() => {
 @media only screen and (max-width: 834px) {
   .logo {
     top: 18.5px;
-    font-size: 2.5rem;
+    font-size: 1.8rem;
   }
 
   .message {
@@ -163,6 +163,7 @@ onMounted(() => {
 
 .logo {
   left: calc(5vw + 50px);
+  font-weight: 600;
 }
 
 .hide .logo {
@@ -171,6 +172,8 @@ onMounted(() => {
 
 .message {
   right: 50px;
+  font-size: 1.2rem;
+  font-style: italic;
 }
 
 .hide .message {

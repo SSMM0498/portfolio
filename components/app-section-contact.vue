@@ -1,31 +1,35 @@
 <template>
   <section id="#Contact">
-    <h1>Get in touch !</h1>
+    <h1>Rejoignez la Tontine !</h1>
     <div class="content row">
-      <div v-if="success">
-        Great! Your message has been sent successfully. I will try to
-        respond quickly.
+      <div v-if="success" class="success-message">
+        <h3>🎉 Félicitations !</h3>
+        <p>Votre demande a été envoyée avec succès. Notre équipe vous contactera rapidement pour vous expliquer le fonctionnement de la tontine et vous accompagner dans votre projet de digitalisation.</p>
       </div>
       <form v-else @submit.prevent="sendMessage" class="contact" action="">
-        <input required v-model="form.name" name="name" type="name" placeholder="Your full name" />
-        <input required v-model="form.email" name="email" type="email" placeholder="Your email" />
-        <input required v-model="form.phoneNumber" name="phoneNumber" type="text" placeholder="Your phone number" />
-        <input required v-model="form.subject" name="subject" type="text" placeholder="Subject" />
-        <textarea required v-model="form.message" name="message" placeholder="The message"></textarea>
-        <div v-if="errored" class="mb-4">
-          Something went wrong. Did you fill out all of the
-          fields?
+        <input required v-model="form.name" name="name" type="name" placeholder="Votre nom complet" />
+        <input required v-model="form.email" name="email" type="email" placeholder="Votre email" />
+        <input required v-model="form.phoneNumber" name="phoneNumber" type="text" placeholder="Votre numéro WhatsApp" />
+        <input required v-model="form.subject" name="subject" type="text" placeholder="Type de projet (Logo, Site, App...)" />
+        <textarea required v-model="form.message" name="message" placeholder="Décrivez votre projet et vos besoins"></textarea>
+        <div v-if="errored" class="error-message">
+          Une erreur s'est produite. Avez-vous bien rempli tous les champs ?
         </div>
         <button>
-          <template v-if="loading">Loading...</template>
-          <template v-if="!loading">Submit</template>
+          <template v-if="loading">Envoi en cours...</template>
+          <template v-if="!loading">Rejoindre la Tontine</template>
         </button>
       </form>
-      <p class="contact-text">
-        <span>Have a question ?</span> Send me a mail <br />
-        and let's talk about <br />
-        all of your needs
-      </p>
+      <div class="contact-text">
+        <span>Prêt à digitaliser votre activité ?</span>
+        <p>Rejoignez notre tontine et obtenez votre logo, site web et application mobile en payant petit à petit, sans stress.</p>
+        <div class="benefits">
+          <div class="benefit">✨ Paiement mensuel accessible</div>
+          <div class="benefit">✨ Communauté d'entrepreneurs</div>
+          <div class="benefit">✨ Accompagnement complet</div>
+          <div class="benefit">✨ Maintenance incluse 3 mois</div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -68,15 +72,55 @@ const sendMessage = async () => {
     })
 }
 </script>
-<style>
+<style scoped>
+.success-message {
+  background: rgba(0, 255, 0, 0.1);
+  border: 1px solid rgba(0, 255, 0, 0.3);
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+  width: 55%;
+  margin-left: 100px;
+}
+
+.success-message h3 {
+  color: #00ff00;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.error-message {
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  color: #ff6b6b;
+}
+
+.benefits {
+  margin-top: 1.5rem;
+}
+
+.benefit {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: var(--second);
+}
+
 @media only screen and (max-width: 650px) {
   form.contact {
     margin-left: 0;
     width: 100%;
   }
 
-  p.contact-text {
+  .contact-text {
     display: none;
+  }
+
+  .success-message {
+    width: 100%;
+    margin-left: 0;
   }
 }
 </style>

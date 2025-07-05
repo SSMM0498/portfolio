@@ -1,16 +1,32 @@
 <template>
-  <section id="#AboutMe">
-    <h1>About Me</h1>
+  <section id="#AboutUs">
+    <h1>Notre Équipe</h1>
     <h2>
-      I'm an AI enthusiast 🧠, fullstack engineer🔧, and a big tech lover 💻. With a 100% backend start⚙️, I love the golang philosophy🐹, but I prefer using the nodejs stack for its simplicity and efficiency⚡️. My passion ✨ for drawing 🎨 has inspired me to add frontend as a new string to my bow🏹 to bring beautiful designs to life with vuejs🌟.
+      Nous sommes 5 passionnés à votre service pour digitaliser votre activité. Une équipe complète qui transforme vos idées en outils concrets pour booster votre business.
     </h2>
+    <div class="team-info">
+      <div class="team-member">
+        <div class="member-icon">👨‍💻</div>
+        <h3>2 Développeurs Fullstack</h3>
+        <p>Spécialisés dans la création d'applications web et mobiles performantes</p>
+      </div>
+      <div class="team-member">
+        <div class="member-icon">🎨</div>
+        <h3>2 Designers UI/UX</h3>
+        <p>Experts en création de logos, maquettes et identités visuelles modernes</p>
+      </div>
+      <div class="team-member">
+        <div class="member-icon">📈</div>
+        <h3>1 Lead Sales</h3>
+        <p>Votre guide personnel pour vous accompagner tout au long du projet</p>
+      </div>
+    </div>
     <div class="skill">
       <div v-for="(tech, key) in techList" :key="key" class="tech-card">
         <div class="tech-back"></div>
-        <img :src="useAssets(`techs/${tech.logo}`)" alt="Item Top Tab" />
+        <img :src="useAssets(`techs/${tech.logo}`)" alt="Technology" />
         <p class="description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Dicta, temporibus.
+          {{ tech.description }}
         </p>
         <div class="title c1">{{ tech.name }}</div>
         <div class="title c2">{{ tech.xp }}</div>
@@ -23,3 +39,45 @@
 import useAssets from '~/composables/useAssets';
 import techList from '~/utils/techList'
 </script>
+<style scoped>
+.team-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 100px;
+  gap: 2rem;
+}
+
+.team-member {
+  flex: 1;
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.member-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.team-member h3 {
+  color: var(--second);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.team-member p {
+  color: var(--second);
+  opacity: 0.8;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+@media only screen and (max-width: 650px) {
+  .team-info {
+    flex-direction: column;
+    margin: 2rem 0;
+  }
+}
+</style>

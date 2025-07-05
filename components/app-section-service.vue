@@ -1,25 +1,25 @@
 <template>
-  <section id="#MyServices">
-    <h1>My Services</h1>
-    <h2>We designs solutions for the future that make sense today.</h2>
+  <section id="#Services">
+    <h1>Nos Services</h1>
+    <h2>Nous transformons vos idées en outils concrets pour booster votre activité</h2>
     <div class="services">
       <div class="glass-card">
-        <h2>FrontEnd Dev</h2>
+        <h2>Logos & Branding</h2>
       </div>
       <div class="glass-card">
-        <h2>BackEnd Dev</h2>
+        <h2>Sites Web</h2>
       </div>
       <div class="glass-card">
-        <h2>Mobile Dev</h2>
+        <h2>Apps Mobile</h2>
       </div>
       <div class="glass-card">
-        <h2>UX - UX</h2>
+        <h2>Maquettes UI/UX</h2>
       </div>
       <div class="glass-card">
-        <h2>No Code</h2>
+        <h2>E-commerce</h2>
       </div>
       <div class="glass-card">
-        <h2>Data Science & AI</h2>
+        <h2>Formation & Support</h2>
       </div>
     </div>
   </section>

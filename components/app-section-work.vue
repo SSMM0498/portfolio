@@ -1,25 +1,25 @@
 <template>
-  <section id="#MyWorks">
-    <h1>My Works</h1>
-    <h2>We designs solutions for the future that make sense today.</h2>
+  <section id="#Projects">
+    <h1>Nos Projets Récents</h1>
+    <h2>Découvrez comment nous avons aidé nos clients à digitaliser leur activité</h2>
     <div class="services">
       <div class="glass-card">
-        <h2>Waxale</h2>
+        <h2>App Boutique Cosmétiques</h2>
       </div>
       <div class="glass-card">
-        <h2>Covid19 - Tracker</h2>
+        <h2>App Gestion Daara</h2>
       </div>
       <div class="glass-card">
-        <h2>Spadon</h2>
+        <h2>E-commerce Sacs Artisanaux</h2>
       </div>
       <div class="glass-card">
-        <h2>Newz</h2>
+        <h2>Branding Salon Coiffure</h2>
       </div>
       <div class="glass-card">
-        <h2>Manga Downloader</h2>
+        <h2>Site Vitrine Tailleur</h2>
       </div>
       <div class="glass-card">
-        <h2>PhotoSpi</h2>
+        <h2>App Livraison Locale</h2>
       </div>
     </div>
   </section>

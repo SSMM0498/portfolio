@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 useHead({
-  title: "Portfolio | SSaliou0498",
+  title: "Tontine Dev & Design | Digitaliser votre activité",
   htmlAttrs: {
-    lang: "en",
+    lang: "fr",
   },
   meta: [
     { charset: "utf-8" },
@@ -10,8 +10,16 @@ useHead({
       name: "viewport",
       content: "width=device-width, initial-scale=1",
     },
-    { hid: "description", name: "description", content: "" },
+    { 
+      hid: "description", 
+      name: "description", 
+      content: "Rejoignez notre tontine et obtenez votre logo, site web et application mobile en payant petit à petit. Une équipe de 5 experts à votre service." 
+    },
     { name: "format-detection", content: "telephone=no" },
+    {
+      name: "keywords",
+      content: "tontine, développement web, application mobile, logo, design, Sénégal, digitalisation, startup"
+    }
   ],
   link: [
     { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
