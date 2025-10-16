@@ -1,0 +1,91 @@
+.work-pre {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 25px 0;
+    height: 100%;
+    font-size: 1.5rem;
+    width: 40%;
+    /* transform: translateX(150%); */
+    transition: transform 0.25s ease-in-out;
+}
+
+.work-pre p {
+    text-align: right;
+}
+
+.work-category {
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--prime);
+    background-color: var(--second);
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin-bottom: 25px;
+}
+
+.work-img,
+img.thumb {
+    position: fixed;
+    z-index: -1;
+    top: 100vh;
+    border-radius: 5px;
+    width: 100%;
+    height: 100vh;
+}
+
+img.thumb {
+    width: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 3s ease-in-out;
+}
+
+.work-img .overlay {
+    position: absolute;
+    top: 0;
+    left: -50px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.work-list {
+    overflow: hidden;
+    display: block;
+    width: 55%;
+    height: calc(100% - 75px);
+}
+
+.work-list li {
+    font-family: Poppins;
+    font-size: 5rem;
+    margin: 0 0 1rem;
+}
+
+.work-list li a {
+    transition: letter-spacing 0.75s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.work-list li a:hover {
+    letter-spacing: 0.75rem;
+}
+
+.work-list li a:hover ~ .work-pre {
+    transform: translateX(0);
+}
+
+.work-list li a:hover ~ .work-img .overlay {
+    top: calc(-100vh - 75px);
+    opacity: 0.5;
+}
+
+.work-list li a:hover ~ .work-img img.thumb {
+    top: -75px;
+    right: 0;
+    opacity: 0.8;
+}
