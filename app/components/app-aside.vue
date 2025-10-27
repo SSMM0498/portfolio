@@ -17,62 +17,110 @@
 <style scoped lang="css">
 .socials {
   position: fixed;
-  left: -60%;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%) translateX(-100%);
   z-index: 5;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
-  transition: left 0.5s ease-in-out;
-}
-
-.socials.active {
-  left: 0px;
-}
-
-.socials>a {
-  display: flex;
-  width: 150px;
-  font-size: 17.5px;
   align-items: flex-start;
-  margin-bottom: 25px;
-  /* overflow: hidden; */
-  cursor: pointer;
-}
-
-.socials a>span {
-  transform: translateX(-150%);
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
   transition: transform 0.5s ease-in-out;
 }
 
-.socials a:hover>span {
-  transform: translateX(5%);
+.socials.active {
+  transform: translateY(-50%) translateX(0);
 }
 
+.socials > a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: auto;
+  min-width: 2rem;
+  font-size: 1.5rem;
+  color: currentColor;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
+.socials a > span {
+  font-size: 1rem;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-0.5rem);
+  transition: all 0.3s ease;
+}
+
+.socials a:hover {
+  color: var(--primary-color, #007bff);
+}
+
+.socials a:hover > span {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Tablet styles */
+@media only screen and (max-width: 768px) {
+  .socials {
+    left: 0.5rem;
+    gap: 1.25rem;
+    padding: 0.75rem;
+  }
+
+  .socials > a {
+    font-size: 1.35rem;
+  }
+
+  .socials a > span {
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile styles */
 @media only screen and (max-width: 650px) {
   .socials {
-    position: fixed;
-    left: auto;
-    right: 1rem;
-    bottom: -60%;
-    z-index: 5;
+    top: auto;
+    left: 50%;
+    bottom: 1rem;
+    transform: translateX(-50%) translateY(150%);
     flex-direction: row;
-    justify-content: flex-start;
-    transition: bottom 0.5s ease-in-out;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: transform 0.5s ease-in-out;
   }
 
   .socials.active {
-    left: auto;
-    bottom: 1rem;
+    transform: translateX(-50%) translateY(0);
   }
 
-  .socials a {
-    width: auto;
+  .socials > a {
+    font-size: 1.5rem;
+    min-width: auto;
   }
 
-  .socials a>span {
-    opacity: 0;
+  .socials a > span {
+    display: none;
+  }
+}
+
+/* Small mobile optimization */
+@media only screen and (max-width: 400px) {
+  .socials {
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .socials > a {
+    font-size: 1.25rem;
   }
 }
 </style>

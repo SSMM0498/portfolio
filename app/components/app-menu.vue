@@ -60,8 +60,7 @@ const handleNavigation = (index: number) => {
 
 .nav li {
   z-index: 2;
-  font-size: 50px;
-  font-size: clamp(60px, 7vw, 80px);
+  font-size: clamp(2.5rem, 7vw, 5rem);
   color: var(--second);
   margin-bottom: 1.75rem;
 }
@@ -69,11 +68,16 @@ const handleNavigation = (index: number) => {
 .nav li a {
   color: var(--second);
   font-weight: 550;
+  text-decoration: none;
   transition: letter-spacing 0.75s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .nav li a:hover {
   letter-spacing: 1rem;
+}
+
+.nav li a:active {
+  opacity: 0.7;
 }
 
 .nav-tgl {
@@ -83,7 +87,7 @@ const handleNavigation = (index: number) => {
   cursor: pointer;
   position: fixed;
   z-index: 100;
-  left: var(--menu);
+  left: var(--menu, 2rem);
   top: 30px;
   width: 40px;
   height: 40px;
@@ -94,6 +98,7 @@ const handleNavigation = (index: number) => {
   box-shadow: 0 0.25rem 1.25rem rgb(250 250 250 / 25%);
   line-height: 0.6;
   text-align: center;
+  transition: all 0.3s ease;
 }
 
 .nav-tgl>span {
@@ -147,7 +152,7 @@ const handleNavigation = (index: number) => {
   width: 100vw;
   height: 100vh;
   transition: all 0.75s ease-in-out;
-  clip-path: circle(20px at calc(5vw + 20px) 50px);
+  clip-path: circle(20px at calc(var(--menu, 2rem) + 20px) 50px);
   z-index: -1;
   visibility: hidden;
   background-color: var(--red);
@@ -185,5 +190,145 @@ const handleNavigation = (index: number) => {
 
 .menu.active .nav-tgl>span::before {
   transform: rotate(45deg);
+}
+
+/* Tablet and below */
+@media only screen and (max-width: 1024px) {
+  .nav li {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .nav li a:hover {
+    letter-spacing: 0.5rem;
+  }
+
+  .nav-tgl {
+    left: var(--menu, 1.5rem);
+    top: 20px;
+  }
+
+  .nav::before {
+    clip-path: circle(22px at calc(var(--menu, 1.5rem) + 22px) 42px);
+  }
+}
+
+/* Mobile landscape and below */
+@media only screen and (max-width: 768px) {
+  .nav-tgl {
+    width: 20px;
+    height: 20px;
+  }
+
+  .nav li {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .nav li a:hover {
+    letter-spacing: 0.3rem;
+  }
+
+  .nav-tgl {
+    left: var(--menu, 1rem);
+    top: 15px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .nav-tgl>span {
+    width: 22px;
+  }
+
+  .nav-tgl>span::before {
+    width: 14px;
+  }
+
+  .nav-tgl>span::after {
+    width: 18px;
+  }
+
+  .nav-tgl:hover>span::after,
+  .nav-tgl:hover>span::before {
+    width: 22px;
+  }
+
+  .menu.active .nav-tgl>span::after,
+  .menu.active .nav-tgl>span::before {
+    width: 22px;
+  }
+
+  .nav::before {
+    clip-path: circle(24px at calc(var(--menu, 1rem) + 24px) 39px);
+  }
+}
+
+/* Mobile portrait */
+@media only screen and (max-width: 480px) {
+  .nav ul {
+    padding: 0 1rem;
+    width: 100%;
+  }
+
+  .nav li {
+    font-size: clamp(1.5rem, 8vw, 2rem);
+    margin-bottom: 1rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .nav li a {
+    display: block;
+    padding: 0.5rem;
+  }
+
+  .nav li a:hover {
+    letter-spacing: 0.15rem;
+  }
+
+  .nav-tgl {
+    left: 1rem;
+    top: 1rem;
+  }
+
+  .nav::before {
+    clip-path: circle(25px at calc(1rem + 25px) 41px);
+  }
+}
+
+/* Small mobile devices */
+@media only screen and (max-width: 360px) {
+  .nav li {
+    font-size: clamp(1.25rem, 7vw, 1.75rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .nav li a:hover {
+    letter-spacing: 0.1rem;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .nav li a {
+    padding: 0.75rem 1rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-tgl:hover>span::after,
+  .nav-tgl:hover>span::before {
+    width: inherit;
+  }
+
+  .nav li a:hover {
+    letter-spacing: normal;
+  }
+
+  .nav li a:active {
+    transform: scale(0.95);
+  }
 }
 </style>

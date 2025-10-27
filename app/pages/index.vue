@@ -1,7 +1,7 @@
 <template>
   <div class="body" :class="{ hide: state.currentSection > 0 }">
     <app-menu />
-    <div class="logo">ssaliou0498</div>
+    <div class="logo">ssmm0498</div>
     <p class="message">With me be in<span>nova</span>tive, <span>prod</span>uctive & <span>crea</span>tive</p>
     <main>
       <div class="circle1" :class="{ right: isUpperHome }"></div>

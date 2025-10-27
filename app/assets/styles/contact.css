@@ -59,4 +59,177 @@
     padding: 10px 25px;
     color: var(--prime);
     background-color: var(--second);
+    transition: all 0.3s ease;
+}
+
+.contact button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.contact button:active {
+    transform: translateY(0);
+}
+
+.contact button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Large tablets and below */
+@media only screen and (max-width: 1024px) {
+    .contact {
+        width: 60%;
+        margin-left: 80px;
+        height: 70vh;
+    }
+
+    .contact-text {
+        width: 40%;
+        font-size: 2.25rem;
+        margin-left: 60px;
+        line-height: 2.5rem;
+    }
+
+    .contact-text span {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+
+    .contact input,
+    .contact button,
+    .contact textarea {
+        font-size: 1rem;
+    }
+}
+
+/* Tablets and below */
+@media only screen and (max-width: 768px) {
+    .content {
+        flex-direction: column;
+        margin-top: 0.75rem;
+    }
+
+    .contact {
+        width: 100%;
+        margin-left: 60px;
+        margin-right: 60px;
+        height: auto;
+        min-height: 60vh;
+    }
+
+    .contact-text {
+        width: 100%;
+        font-size: 2rem;
+        margin-left: 60px;
+        margin-top: 2rem;
+        line-height: 2.25rem;
+    }
+
+    .contact-text span {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+
+    .contact textarea {
+        height: 150px;
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Mobile and below */
+@media only screen and (max-width: 650px) {
+    .contact {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        height: auto;
+        min-height: 50vh;
+    }
+
+    .contact-text {
+        display: none;
+    }
+
+    .contact input,
+    .contact button,
+    .contact textarea {
+        font-size: 1rem;
+        padding: 12px;
+        margin-bottom: 1rem;
+    }
+
+    .contact textarea {
+        height: 120px;
+        margin-bottom: 1.25rem;
+    }
+
+    .contact button {
+        width: 100%;
+        padding: 14px 25px;
+        font-size: 1.05rem;
+    }
+}
+
+/* Small mobile devices */
+@media only screen and (max-width: 480px) {
+    .content {
+        margin-top: 0.5rem;
+    }
+
+    .contact input,
+    .contact button,
+    .contact textarea {
+        font-size: 0.95rem;
+        padding: 11px;
+        border-radius: 4px;
+    }
+
+    .contact textarea {
+        height: 100px;
+    }
+
+    .contact button {
+        padding: 13px 20px;
+    }
+}
+
+/* Very small mobile devices */
+@media only screen and (max-width: 360px) {
+    .contact input,
+    .contact button,
+    .contact textarea {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .contact textarea {
+        height: 90px;
+    }
+
+    .contact button {
+        padding: 12px 18px;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .contact input,
+    .contact button,
+    .contact textarea {
+        /* Minimum touch target size */
+        min-height: 44px;
+    }
+
+    .contact button {
+        min-height: 48px;
+    }
+
+    .contact button:hover {
+        transform: none;
+    }
+
+    .contact button:active {
+        transform: scale(0.98);
+    }
 }

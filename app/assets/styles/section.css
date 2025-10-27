@@ -49,18 +49,103 @@ section.active:not(.banner) h2 {
   transform: translateY(0);
 }
 
+/* Large tablets and below */
+@media only screen and (max-width: 1024px) {
+  section:not(.banner) {
+    padding: 1.75rem 1.75rem 0;
+  }
+
+  section:not(.banner) h1 {
+    font-size: 4rem;
+    line-height: 2.5rem;
+    margin-bottom: 2rem;
+    margin-left: 80px;
+  }
+
+  section:not(.banner) h2 {
+    line-height: 1.85rem;
+    margin-bottom: 1.25rem;
+    margin-left: 80px;
+  }
+}
+
+/* Tablets and below */
+@media only screen and (max-width: 768px) {
+  section:not(.banner) {
+    padding: 1.5rem 1.5rem 0;
+  }
+
+  section:not(.banner) h1 {
+    font-size: 3.5rem;
+    line-height: 2.25rem;
+    margin-bottom: 1.75rem;
+    margin-left: 60px;
+  }
+
+  section:not(.banner) h2 {
+    font-size: 1rem;
+    line-height: 1.65rem;
+    margin-bottom: 1rem;
+    margin-left: 60px;
+  }
+}
+
+/* Mobile landscape and portrait */
 @media only screen and (max-width: 650px) {
+  section:not(.banner) {
+    padding: 1.25rem 1.25rem 0;
+  }
+
   section:not(.banner) h1,
   section:not(.banner) h2 {
     margin-left: 0;
   }
 
   section:not(.banner) h1 {
-    margin: 4rem 0 1rem;
-    font-size: 3.5rem;
+    margin: 3.5rem 0 1rem;
+    font-size: 3rem;
+    line-height: 2rem;
   }
 
   section:not(.banner) h2 {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
+    line-height: 1.6rem;
+  }
+}
+
+/* Small mobile devices */
+@media only screen and (max-width: 480px) {
+  section:not(.banner) {
+    padding: 1rem 1rem 0;
+  }
+
+  section:not(.banner) h1 {
+    margin: 3rem 0 0.75rem;
+    font-size: 2.5rem;
+    line-height: 1.75rem;
+  }
+
+  section:not(.banner) h2 {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Very small mobile devices */
+@media only screen and (max-width: 360px) {
+  section:not(.banner) {
+    padding: 0.875rem 0.875rem 0;
+  }
+
+  section:not(.banner) h1 {
+    margin: 2.5rem 0 0.5rem;
+    font-size: 2rem;
+    line-height: 1.5rem;
+  }
+
+  section:not(.banner) h2 {
+    font-size: 0.9rem;
+    line-height: 1.4rem;
   }
 }
