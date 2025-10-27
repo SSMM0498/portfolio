@@ -134,7 +134,7 @@ section .skill .tech-card:hover>.tech-back::after {
 
 section .skill .tech-card img {
   position: absolute;
-  height: 45vh;
+  height: 25vh;
   bottom: 5%;
   filter: grayscale(100%) brightness(0.3);
   transition: filter 0.5s ease-in-out;

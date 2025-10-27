@@ -30,14 +30,14 @@ section:not(.banner) h2 {
 }
 
 section:not(.banner) h1 {
-  font-size: 5rem;
+  font-size: 4.5rem;
   line-height: 3rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
   transition: transform 0.25s ease-in-out 0.5s, opacity 0.25s ease-in-out 0.5s;
 }
 
 section:not(.banner) h2 {
-  line-height: 2rem;
+  line-height: 1.75rem;
   margin-bottom: 1.5rem;
   transition: transform 0.25s ease-in-out 0.75s,
     opacity 0.25s ease-in-out 0.75s;
