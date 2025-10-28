@@ -43,7 +43,7 @@ const form = ref({
 
 const sendMessage = async () => {
   loading.value = true
-  await $fetch('http://localhost:3000/api/contact', {
+  await $fetch('/api/contact', {
     method: 'POST',
     body: form,
   }).then(() => {
