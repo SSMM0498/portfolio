@@ -31,9 +31,9 @@ const dotLeftPosition = computed(() => {
 
 const dotTopPosition = computed(() => {
   if (title.value === null) {
-    return '-90%'
+    return '-1000%'
   } else {
-    const titleRect = title.value.getBoundingClientRect().height / 2
+    const titleRect = title.value.getBoundingClientRect().height / 2.5
     return '-' + titleRect + 'px'
   }
 });
@@ -55,9 +55,8 @@ onMounted(() =>
 .title {
   position: relative;
   display: flex;
-
-  /* margin-top: 5rem; */
   margin-bottom: 0;
+  font-weight: 700;
   font-size: 18vw;
   color: var(--second);
   transform: translateY(0);
@@ -84,5 +83,13 @@ onMounted(() =>
 
 .content.switch .title::after {
   opacity: 0;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .content {
+    bottom: 15%;
+  }
+
 }
 </style>

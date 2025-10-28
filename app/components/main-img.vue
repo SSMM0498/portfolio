@@ -5,6 +5,6 @@
 img {
   position: absolute;
   bottom: 0;
-  height: 80vh;
+  height: 80dvh;
 }
 </style>

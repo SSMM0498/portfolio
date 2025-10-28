@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 useHead({
-  title: "Portfolio | SSaliou0498",
+  title: "Portfolio | SSMM0498",
   htmlAttrs: {
     lang: "en",
   },
@@ -19,10 +19,7 @@ useHead({
 });
 </script>
 <template>
-  <Html>
-  <Body>
-    <NuxtLoadingIndicator :height="5" :duration="3000" :throttle="400" />
+  <UApp>
     <NuxtPage />
-  </Body>
-  </Html>
+  </UApp>
 </template>

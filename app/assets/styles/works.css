@@ -29,10 +29,10 @@
 img.thumb {
     position: fixed;
     z-index: -1;
-    top: 100vh;
+    top: 100dvh;
     border-radius: 5px;
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
 }
 
 img.thumb {
@@ -47,7 +47,7 @@ img.thumb {
     top: 0;
     left: -50px;
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     background-color: rgb(255, 255, 255);
     opacity: 0;
     z-index: 1;
@@ -80,7 +80,7 @@ img.thumb {
 }
 
 .work-list li a:hover ~ .work-img .overlay {
-    top: calc(-100vh - 75px);
+    top: calc(-100dvh - 75px);
     opacity: 0.5;
 }
 

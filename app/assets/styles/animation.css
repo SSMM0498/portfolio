@@ -236,7 +236,7 @@
     }
 
     100% {
-        transform: translateY(100vh);
+        transform: translateY(100dvh);
     }
 }
 
@@ -248,7 +248,7 @@
 
 @keyframes tswipeup {
     0% {
-        transform: translateY(100vh);
+        transform: translateY(100dvh);
     }
 
     100% {
@@ -262,6 +262,6 @@
     }
 
     100% {
-        transform: translateY(-100vh);
+        transform: translateY(-100dvh);
     }
 }

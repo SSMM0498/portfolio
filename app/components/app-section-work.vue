@@ -1,7 +1,7 @@
 <template>
   <section id="#MyWorks">
     <h1>My Works</h1>
-    <h2>We designs solutions for the future that make sense today.</h2>
+    <h2>We designs solutions 💡 for the future that make sense today 🔥.</h2>
     <div class="services">
       <div class="glass-card">
         <h2>Waxale</h2>

@@ -37,8 +37,8 @@ onMounted(() => {
 }
 
 span.tech {
-  font-size: 2.5rem;
-  opacity: 0.02;
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  opacity: 0.0001;
 }
 
 span.tech::before {

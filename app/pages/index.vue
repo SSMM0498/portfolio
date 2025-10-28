@@ -1,7 +1,6 @@
 <template>
   <div class="body" :class="{ hide: state.currentSection > 0 }">
     <app-menu />
-    <div class="logo">ssmm0498</div>
     <p class="message">With me be in<span>nova</span>tive, <span>prod</span>uctive & <span>crea</span>tive</p>
     <main>
       <div class="circle1" :class="{ right: isUpperHome }"></div>
@@ -101,12 +100,13 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
 }
 
 .scroll-down {
   position: absolute;
-  bottom: 2.5%;
+  bottom: 5%;
   cursor: pointer;
   outline: none;
   background-color: transparent;
@@ -122,8 +122,19 @@ onMounted(() => {
   opacity: 1;
   border: 2px solid var(--second);
   border-radius: 32px;
-  animation: 10s bounce 7.5s infinite;
+  animation: 10s bounce 1.5s infinite;
   transition: transform, height, opacity .2s 5.5s ease-in;
+}
+
+@media only screen and (max-width: 768px) {
+  .scroll-down {
+    bottom: 10%;
+  }
+
+  .scroll-down i {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .scroll-down i::before {
@@ -139,7 +150,6 @@ onMounted(() => {
   border-width: 0 0 2px 2px;
 }
 
-.logo,
 .message {
   position: absolute;
   top: 30px;
@@ -150,22 +160,9 @@ onMounted(() => {
 }
 
 @media only screen and (max-width: 834px) {
-  .logo {
-    top: 18.5px;
-    font-size: 2.5rem;
-  }
-
   .message {
     display: none;
   }
-}
-
-.logo {
-  left: calc(5vw + 50px);
-}
-
-.hide .logo {
-  transform: translate(-50%, -200%);
 }
 
 .message {
@@ -183,8 +180,8 @@ onMounted(() => {
 main .circle1,
 main .circle2 {
   position: absolute;
-  width: max(22.5vw, 22.5vh);
-  height: max(22.5vw, 22.5vh);
+  width: max(22.5vw, 22.5dvh);
+  height: max(22.5vw, 22.5dvh);
   border-radius: 50%;
   background-color: var(--red);
   filter: blur(1px);
@@ -197,8 +194,8 @@ main .circle1.right {
 }
 
 main .circle2 {
-  width: max(27.5vw, 27.5vh);
-  height: max(27.5vw, 27.5vh);
+  width: max(27.5vw, 27.5dvh);
+  height: max(27.5vw, 27.5dvh);
   opacity: 0.5;
   filter: blur(15px);
 }
@@ -247,8 +244,8 @@ main.eff .glass {
 }
 
 main .glass.full {
-  border-width: .25rem;
-  height: 100vh;
+  border-top-width: .25rem;
+  height: 100dvh;
   backdrop-filter: blur(15px);
 }
 </style>

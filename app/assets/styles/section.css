@@ -3,7 +3,7 @@ section {
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   transition: transform 0.5s ease-in-out;
 }
 
@@ -30,17 +30,20 @@ section:not(.banner) h2 {
 }
 
 section:not(.banner) h1 {
-  font-size: 4.5rem;
+  font-weight: 800;
+  font-size: 3.5rem;
   line-height: 3rem;
   margin-bottom: 1rem;
   transition: transform 0.25s ease-in-out 0.5s, opacity 0.25s ease-in-out 0.5s;
 }
 
 section:not(.banner) h2 {
-  line-height: 1.75rem;
+  font-size: 1.5rem;
   margin-bottom: 1.5rem;
   transition: transform 0.25s ease-in-out 0.75s,
     opacity 0.25s ease-in-out 0.75s;
+  font-weight: normal;
+  line-height: 1.5;
 }
 
 section.active:not(.banner) h1,
@@ -56,7 +59,6 @@ section.active:not(.banner) h2 {
   }
 
   section:not(.banner) h1 {
-    font-size: 4rem;
     line-height: 2.5rem;
     margin-bottom: 2rem;
     margin-left: 80px;
@@ -76,7 +78,7 @@ section.active:not(.banner) h2 {
   }
 
   section:not(.banner) h1 {
-    font-size: 3.5rem;
+    font-size: 3rem;
     line-height: 2.25rem;
     margin-bottom: 1.75rem;
     margin-left: 60px;
@@ -102,8 +104,8 @@ section.active:not(.banner) h2 {
   }
 
   section:not(.banner) h1 {
-    margin: 3.5rem 0 1rem;
-    font-size: 3rem;
+    margin: 5rem 0 1rem;
+    font-size: 2.5rem;
     line-height: 2rem;
   }
 
@@ -121,7 +123,7 @@ section.active:not(.banner) h2 {
 
   section:not(.banner) h1 {
     margin: 3rem 0 0.75rem;
-    font-size: 2.5rem;
+    font-size: 2rem;
     line-height: 1.75rem;
   }
 
@@ -140,7 +142,6 @@ section.active:not(.banner) h2 {
 
   section:not(.banner) h1 {
     margin: 2.5rem 0 0.5rem;
-    font-size: 2rem;
     line-height: 1.5rem;
   }
 

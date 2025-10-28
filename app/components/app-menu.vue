@@ -1,8 +1,11 @@
 <template>
   <div class="menu" :class="{ active: state.isMenuActive }">
-    <button class="nav-tgl" type="button" aria-label="toggle menu" @click.prevent="toggle">
-      <span aria-hidden="true"></span>
-    </button>
+    <div class="menu-btn">
+      <button class="nav-tgl" type="button" aria-label="toggle menu" @click.prevent="toggle">
+        <span aria-hidden="true"></span>
+      </button>
+        <div v-if="!state.isMenuActive" class="logo">ssmm0498</div>
+    </div>
     <nav class="nav">
       <ul>
         <li>
@@ -33,23 +36,41 @@ const handleNavigation = (index: number) => {
 }
 </script>
 <style scoped lang="css">
+.logo {
+  margin-left: 1rem;
+  font-family: Poppins, sans-serif;
+  font-size: 1.5rem;
+  z-index: 3;
+  transition: transform 0.125s ease-in-out;
+}
+
+@media only screen and (max-width: 834px) {
+  .logo {
+    font-size: 2.5rem;
+  }
+}
+
+.hide .logo {
+  transform: translate(-50%, -200%);
+}
+
 .menu,
 .nav {
   position: fixed;
-  top: -100vh;
+  top: -100dvh;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   transition: top 0.5s ease-in-out;
 }
 
 .nav ul {
   position: relative;
-  top: -100vh;
+  top: -100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,15 +101,21 @@ const handleNavigation = (index: number) => {
   opacity: 0.7;
 }
 
+.menu-btn {
+  position: fixed;
+  top: 30px;
+  left: var(--menu, 2rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
 .nav-tgl {
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  position: fixed;
-  z-index: 100;
-  left: var(--menu, 2rem);
-  top: 30px;
   width: 40px;
   height: 40px;
   border: none;
@@ -150,7 +177,7 @@ const handleNavigation = (index: number) => {
   left: 0;
   content: '';
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   transition: all 0.75s ease-in-out;
   clip-path: circle(20px at calc(var(--menu, 2rem) + 20px) 50px);
   z-index: -1;
@@ -166,7 +193,7 @@ const handleNavigation = (index: number) => {
 .menu.active .nav::before {
   visibility: visible;
   clip-path: circle(100%);
-  filter: blur(5rem);
+  filter: blur(1.25rem);
   background: var(--prime-t);
 }
 
