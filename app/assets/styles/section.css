@@ -78,13 +78,15 @@ section.active:not(.banner) h2 {
   }
 
   section:not(.banner) h1 {
+    text-align: right;
     font-size: 3rem;
     line-height: 2.25rem;
     margin-bottom: 1.75rem;
     margin-left: 60px;
   }
-
+  
   section:not(.banner) h2 {
+    text-align: right;
     font-size: 1rem;
     line-height: 1.65rem;
     margin-bottom: 1rem;

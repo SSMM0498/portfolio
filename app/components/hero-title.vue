@@ -88,7 +88,7 @@ onMounted(() =>
 
 @media only screen and (max-width: 768px) {
   .content {
-    bottom: 15%;
+    bottom: 10%;
   }
 
 }

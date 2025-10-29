@@ -128,7 +128,7 @@ onMounted(() => {
 
 @media only screen and (max-width: 768px) {
   .scroll-down {
-    bottom: 10%;
+    bottom: 5%;
   }
 
   .scroll-down i {
