@@ -20,7 +20,8 @@
   },
   "about": {
     "title": "À propos",
-    "bio": "Je suis ingénieur de recherche en IA 🧠 et développeur fullstack 🔧, spécialisé en IA, en télédétection satellite et en applications agricoles. Mon travail porte sur l'estimation des rendements, la classification, la phénologie et l'analyse géospatiale avec Google Earth Engine et le machine learning. Je conçois des solutions évolutives qui transforment la recherche et les données en applications concrètes."
+    "bio": "Je suis ingénieur de recherche en IA 🧠 et développeur fullstack 🔧, spécialisé en IA, en télédétection satellite et en applications agricoles. Mon travail porte sur l'estimation des rendements, la classification, la phénologie et l'analyse géospatiale avec Google Earth Engine et le machine learning. Je conçois des solutions évolutives qui transforment la recherche et les données en applications concrètes.",
+    "bioShort": "Je suis ingénieur de recherche en IA 🧠 et développeur fullstack 🔧, spécialisé en IA, en télédétection satellite et en applications agricoles."
   },
   "tech": {
     "python": "Mon langage principal pour le ML et la géodonnée",

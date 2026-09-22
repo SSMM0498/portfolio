@@ -235,10 +235,25 @@ main .circle2.left {
     transform: translateY(35dvh);
   }
 
-  /* …then back to the center, and smaller, as soon as the scroll starts */
+  /* Back to the hero: stack at the center first (split classes are removed 750ms later), then move down */
+  main .circle1.right,
+  main .circle2.left {
+    transform: scale(0.6);
+  }
+
+  /* …then back to the center, and smaller, as soon as the scroll starts… */
   .hide main .circle1,
   .hide main .circle2 {
     transform: scale(0.6);
+  }
+
+  /* …keeping the same split movement as on desktop */
+  .hide main .circle1.right {
+    transform: translate(-100px, 100px) scale(0.6);
+  }
+
+  .hide main .circle2.left {
+    transform: translate(50px, -50px) scale(0.6);
   }
 }
 

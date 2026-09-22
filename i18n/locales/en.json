@@ -20,7 +20,8 @@
   },
   "about": {
     "title": "About Me",
-    "bio": "I'm an AI Research Engineer 🧠 and fullstack developer 🔧 specializing in AI, satellite remote sensing, and agricultural applications. My work focuses on crop yield estimation, classification, phenology, and geospatial analysis using Google Earth Engine and machine learning. I build scalable solutions that turn research and data into practical applications."
+    "bio": "I'm an AI Research Engineer 🧠 and fullstack developer 🔧 specializing in AI, satellite remote sensing, and agricultural applications. My work focuses on crop yield estimation, classification, phenology, and geospatial analysis using Google Earth Engine and machine learning. I build scalable solutions that turn research and data into practical applications.",
+    "bioShort": "I'm an AI Research Engineer 🧠 and fullstack developer 🔧 specializing in AI, satellite remote sensing, and agricultural applications."
   },
   "tech": {
     "python": "My main language for ML and geodata",
