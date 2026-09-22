@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const { t } = useI18n()
 const localeHead = useLocaleHead()
+const colorMode = useColorMode()
 
 useHead(() => ({
   htmlAttrs: {
@@ -16,7 +17,15 @@ useHead(() => ({
     ...localeHead.value.meta,
   ],
   link: [
-    { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+    // .ico is the fallback for browsers without SVG favicon support
+    { rel: "icon", href: "/favicon.ico", sizes: "32x32" },
+    {
+      // The key lets the client replace the SSR tag when the stored theme differs
+      key: "favicon-svg",
+      rel: "icon",
+      type: "image/svg+xml",
+      href: colorMode.value === "light" ? "/favicon-light.svg" : "/favicon-dark.svg",
+    },
     ...localeHead.value.link,
   ],
 }));

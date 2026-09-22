@@ -44,7 +44,7 @@ const sendMessage = async () => {
   loading.value = true
   await $fetch('/api/contact', {
     method: 'POST',
-    body: form,
+    body: form.value,
   }).then(() => {
     errored.value = false;
     success.value = true;

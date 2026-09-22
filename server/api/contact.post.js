@@ -12,31 +12,34 @@ const transporter = nodemailer.createTransport({
 });
 
 export default defineEventHandler(async (event) => {
+    const body = (await readBody(event)) ?? {};
+
+    let data;
     try {
-        const body = await readBody(event);
-
-        await isValid(body)
-            .then(async (data) => {
-                const mail = await transporter.sendMail({
-                    from: `"${data.name}" <${data.email}>`,
-                    to: config.CONTACTMAIL,
-                    subject: data.subject,
-                    text: data.message,
-                    html: data.message,
-                });
-
-                console.log('Message sent: %s', mail.messageId);
-                console.log('Preview URL: %s', nodemailer.getTestMessageUrl(mail));
-                return Promise.resolve();
-            })
-            .catch((errors) => {
-                return Promise.reject(errors);
-            });
-
-        return 'Gesendet!';
-    } catch (error) {
-        sendError(event, createError({ statusCode: 400, statusMessage: error }));
+        data = await isValid(body);
+    } catch (errors) {
+        throw createError({ statusCode: 400, statusMessage: 'Invalid form data', data: errors });
     }
+
+    try {
+        const mail = await transporter.sendMail({
+            // Sending as the visitor would fail SPF/DMARC: send from our own mailbox, reply to the visitor
+            from: config.MAIL_USER,
+            replyTo: { name: data.name, address: data.email },
+            to: config.CONTACT_MAIL,
+            subject: data.subject,
+            text: `${data.message}\n\n${data.name} · ${data.email} · ${data.phoneNumber}`,
+            html: `<p>${data.message}</p><p>${data.name} · ${data.email} · ${data.phoneNumber}</p>`,
+        });
+
+        console.log('Message sent: %s', mail.messageId);
+        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(mail));
+    } catch (error) {
+        console.error('Contact mail failed:', error);
+        throw createError({ statusCode: 500, statusMessage: 'Message could not be sent' });
+    }
+
+    return 'Gesendet!';
 });
 
 async function isValid(body) {
@@ -49,6 +52,8 @@ async function isValid(body) {
         });
     if (validator.isEmpty(body.name || ''))
         errors.push({ field: 'name', error: 'Field is required.' });
+    if (validator.isEmpty(body.phoneNumber || ''))
+        errors.push({ field: 'phoneNumber', error: 'Field is required.' });
     if (validator.isEmpty(body.subject || ''))
         errors.push({ field: 'subject', error: 'Field is required.' });
     if (validator.isEmpty(body.message || ''))
@@ -61,6 +66,7 @@ async function isValid(body) {
     } else {
         return Promise.resolve({
             email: validator.normalizeEmail(body.email),
+            phoneNumber: validator.escape(body.phoneNumber),
             subject: validator.escape(body.subject),
             name: validator.escape(body.name),
             message: validator.escape(body.message),

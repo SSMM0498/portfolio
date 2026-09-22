@@ -9,20 +9,22 @@
 <script setup lang="ts">
 import techList from '~/utils/techList'
 
-const giantList = [
+const giantList = ref([
   ...techList,
   ...techList,
   ...techList,
   ...techList,
   ...techList,
-].sort(() => Math.random() - 0.5)
+])
 
 const current = ref(0)
 let interval: ReturnType<typeof setInterval>
 onMounted(() => {
+  // Shuffled on the client only, so the SSR markup matches during hydration
+  giantList.value = [...giantList.value].sort(() => Math.random() - 0.5)
   interval = setInterval(() => {
-    current.value = Math.floor(Math.random() * giantList.length)
-  }, 500)
+    current.value = Math.floor(Math.random() * giantList.value.length)
+  }, 250)
 })
 onBeforeUnmount(() => clearInterval(interval))
 </script>
