@@ -38,7 +38,7 @@
     border-radius: 5px;
     border: 1.5px solid var(--second);
     color: var(--second);
-    background-color: #d8d7d73e;
+    background-color: var(--field);
     padding: 10px;
     outline: none;
     margin-bottom: 1rem;
@@ -64,7 +64,7 @@
 
 .contact button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px var(--shadow);
 }
 
 .contact button:active {

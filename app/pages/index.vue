@@ -1,6 +1,7 @@
 <template>
   <div class="body" :class="{ hide: state.currentSection > 0 }">
     <app-menu />
+    <theme-toggle />
     <p class="message">With me be in<span>nova</span>tive, <span>prod</span>uctive & <span>crea</span>tive</p>
     <main>
       <div class="circle1" :class="{ right: isUpperHome }"></div>
@@ -174,7 +175,7 @@ onMounted(() => {
 }
 
 .message span {
-  color: var(--red);
+  color: var(--main);
 }
 
 main .circle1,
@@ -183,7 +184,7 @@ main .circle2 {
   width: max(22.5vw, 22.5dvh);
   height: max(22.5vw, 22.5dvh);
   border-radius: 50%;
-  background-color: var(--red);
+  background-color: var(--main);
   filter: blur(1px);
   transition: filter 0.75s ease-in-out, transform 0.75s ease-in-out;
 }
@@ -231,7 +232,7 @@ main .glass {
   background: var(--prime-d);
   width: 100%;
   height: 12.5%;
-  border-top: 1px solid var(--red-t2);
+  border-top: 1px solid var(--main-t);
   transition: all 0.75s ease-in-out;
 }
 

@@ -182,7 +182,7 @@ const handleNavigation = (index: number) => {
   clip-path: circle(20px at calc(var(--menu, 2rem) + 20px) 50px);
   z-index: -1;
   visibility: hidden;
-  background-color: var(--red);
+  background-color: var(--main);
 }
 
 .menu.active,

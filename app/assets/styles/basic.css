@@ -23,7 +23,49 @@
   --purple-t: #9900f095;
   --orange-t: #ff9d0095;
   --luminescence: #ffffffbf;
+  --glass: #bbbbbb17;
+  --glass-border: rgba(255, 255, 255, 0.125);
+  --field: #d8d7d73e;
+  --shadow: rgba(0, 0, 0, 0.2);
+  --shadow-strong: rgba(0, 0, 0, 0.75);
+  --main: var(--red);
+  --main-t: var(--red-t2);
+  --rainbow-1: #e93903;
+  --rainbow-2: #e20909;
+  --rainbow-3: #e2092a;
+  --rainbow-4: #ec0153;
   --menu: 5vw;
+}
+
+/* Light theme — dark stays the default */
+html.light {
+  --prime: #fff;
+  --prime-d: #00000010;
+  --prime-d2: #4a5568b5;
+  --second: #000;
+  --prime-t: #fafafaf1;
+  --red: #e63946;
+  --red-1: #d62828;
+  --red-2: #bf0000;
+  --red-3: #a4161a;
+  --purple: #7209b7;
+  --orange: #f77f00;
+  --red-t: #e6502710;
+  --red-t2: #e6394695;
+  --purple-t: #7209b73d;
+  --orange-t: #f77f003d;
+  --luminescence: #00000040;
+  --glass: #0000000a;
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --field: #0000000d;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --shadow-strong: rgba(0, 0, 0, 0.25);
+  --main: var(--purple);
+  --main-t: var(--purple-t);
+  --rainbow-1: #7209b7;
+  --rainbow-2: #9d4edd;
+  --rainbow-3: #8338ec;
+  --rainbow-4: #b5179e;
 }
 
 a {

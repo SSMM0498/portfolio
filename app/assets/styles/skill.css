@@ -36,7 +36,7 @@ section .skill .tech-card .title {
   color: var(--prime);
   border-radius: 5px;
   z-index: 3;
-  box-shadow: 10px 10px 3rem -8px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 3rem -8px var(--shadow-strong);
   animation: float 5s cubic-bezier(0.175, 0.885, 1, 2) infinite;
   transition: all 1s ease-in-out;
 }
@@ -102,8 +102,8 @@ section .skill .tech-back {
   width: 100%;
   height: 100%;
   border-radius: 7.5px;
-  box-shadow: 10px 10px 3rem -8px rgba(0, 0, 0, 0.507);
-  background-color: #bbbbbb17;
+  box-shadow: 10px 10px 3rem -8px var(--shadow-strong);
+  background-color: var(--glass);
   color: var(--prime);
   transition: height 0.75s ease-in-out;
   overflow: hidden;
@@ -124,7 +124,7 @@ section .skill .tech-back::after {
   height: 325px;
   border-radius: 100%;
   color: var(--prime);
-  background-color: #000;
+  background-color: var(--prime);
   transition: transform 1.5s ease-out;
 }
 

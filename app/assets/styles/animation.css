@@ -110,23 +110,23 @@
 
 @keyframes rainbow {
     0% {
-        color: #e93903;
+        color: var(--rainbow-1);
     }
 
     25% {
-        color: #e20909;
+        color: var(--rainbow-2);
     }
 
     50% {
-        color: #e2092a;
+        color: var(--rainbow-3);
     }
 
     75% {
-        color: #ec0153;
+        color: var(--rainbow-4);
     }
 
     100% {
-        color: #e93903;
+        color: var(--rainbow-1);
     }
 }
 
