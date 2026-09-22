@@ -36,50 +36,6 @@
     }
 }
 
-@keyframes sliding {
-    0% {
-        transform: translateX(0);
-    }
-
-    10% {
-        transform: translateX(0);
-    }
-
-    50% {
-        transform: translateX(-52.5%);
-    }
-
-    60% {
-        transform: translateX(-52.5%);
-    }
-
-    100% {
-        transform: translateX(0);
-    }
-}
-
-@keyframes sliding-1 {
-    0% {
-        transform: translateX(0);
-    }
-
-    5% {
-        transform: translateX(0);
-    }
-
-    50% {
-        transform: translateX(-90.5%);
-    }
-
-    55% {
-        transform: translateX(-90.5%);
-    }
-
-    100% {
-        transform: translateX(0);
-    }
-}
-
 @keyframes minifloat {
     0% {
         transform: translateY(0);

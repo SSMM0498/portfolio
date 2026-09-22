@@ -4,7 +4,9 @@
     "description": "Ingénieur de recherche en IA et télédétection satellite pour l'agriculture : estimation des rendements, classification des cultures et phénologie avec Google Earth Engine et le machine learning. Ouvert à un encadrement de thèse, à des collaborations de recherche et à des missions freelance."
   },
   "controls": {
-    "switchLanguage": "Passer en anglais"
+    "switchLanguage": "Passer en anglais",
+    "carouselPrev": "Faire défiler vers la gauche",
+    "carouselNext": "Faire défiler vers la droite"
   },
   "menu": {
     "home": "Accueil",

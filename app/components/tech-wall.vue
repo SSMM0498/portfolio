@@ -24,7 +24,7 @@ onMounted(() => {
   giantList.value = [...giantList.value].sort(() => Math.random() - 0.5)
   interval = setInterval(() => {
     current.value = Math.floor(Math.random() * giantList.value.length)
-  }, 250)
+  }, 500)
 })
 onBeforeUnmount(() => clearInterval(interval))
 </script>

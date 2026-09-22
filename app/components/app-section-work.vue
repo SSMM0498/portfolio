@@ -2,7 +2,7 @@
   <section id="#MyWorks">
     <h1>{{ t('projects.title') }}</h1>
     <h2>{{ t('projects.subtitle') }}</h2>
-    <div class="services">
+    <app-carousel name="projects" class="services">
       <div class="glass-card" v-for="project in featuredProjects" :key="project.id">
         <div class="glass-info">
           <span class="work-category">{{ t(`projects.${project.id}.context`) }}</span>
@@ -14,7 +14,7 @@
         </div>
         <h2>{{ t(`projects.${project.id}.title`) }}</h2>
       </div>
-    </div>
+    </app-carousel>
   </section>
 </template>
 <script setup lang="ts">

@@ -5,14 +5,14 @@
       <span class="bio">{{ t('about.bio') }}</span>
       <span class="bio-short">{{ t('about.bioShort') }}</span>
     </h2>
-    <div class="skill">
+    <app-carousel name="about" :duration="70" class="skill">
       <div class="tech-card" v-for="tech in techList" :key="tech.id">
         <div class="tech-back"></div>
         <img v-if="tech.logo" :src="useAssets(`techs/${tech.logo}`)" :alt="tech.name" />
         <span v-else class="logo-text" :style="{ '--tech-color': tech.color }">{{ tech.name }}</span>
         <p class="description">{{ t(`tech.${tech.id}`) }}</p>
       </div>
-    </div>
+    </app-carousel>
   </section>
 </template>
 <script setup lang="ts">

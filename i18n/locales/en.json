@@ -4,7 +4,9 @@
     "description": "Research Engineer in AI and satellite remote sensing for agriculture: crop yield estimation, crop classification and phenology with Google Earth Engine and machine learning. Open to PhD supervision, research collaborations and freelance missions."
   },
   "controls": {
-    "switchLanguage": "Switch to French"
+    "switchLanguage": "Switch to French",
+    "carouselPrev": "Scroll carousel left",
+    "carouselNext": "Scroll carousel right"
   },
   "menu": {
     "home": "Home",

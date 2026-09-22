@@ -17,7 +17,13 @@
       <app-section-work :class="{ active: state.currentSection === 3 }" />
       <app-section-contact :class="{ active: state.currentSection === 4 }" />
     </main>
-    <button class="scroll-down" v-show="state.currentSection < 4" @click="increment"><i></i></button>
+    <div class="bottom-nav">
+      <button v-show="activeCarousel" class="carousel-btn prev" :disabled="!activeCarousel?.canPrev.value"
+        :aria-label="t('controls.carouselPrev')" @click="activeCarousel?.scrollPage(-1)"></button>
+      <button class="scroll-down" v-show="state.currentSection < 4" @click="increment"><i></i></button>
+      <button v-show="activeCarousel" class="carousel-btn next" :disabled="!activeCarousel?.canNext.value"
+        :aria-label="t('controls.carouselNext')" @click="activeCarousel?.scrollPage(1)"></button>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
@@ -26,6 +32,14 @@ const { t } = useI18n()
 const { state, decrement, increment } = useSectionCurrent()
 const isUpperHome = ref(false)
 let ticking = false
+
+// Carousel shown in each section, in section order (matches the `name` of each app-carousel)
+const sectionCarousels = [null, 'about', 'expertise', 'projects', null]
+const carousels = useCarousels()
+const activeCarousel = computed(() => {
+  const name = sectionCarousels[state.currentSection]
+  return name ? carousels.get(name) : undefined
+})
 
 const slideDurationTimeout = (slideDuration: number) => {
   setTimeout(function () {
@@ -40,6 +54,9 @@ watch(state, () => {
 })
 
 const handleScroll = (evt: Event) => {
+  // Horizontal scrolling (trackpad, shift + wheel) belongs to the carousels
+  if (Math.abs((evt as WheelEvent).deltaX) > Math.abs((evt as WheelEvent).deltaY)) return
+
   const isFirefox = /Firefox/i.test(navigator.userAgent)
   const isIe =
     /MSIE/i.test(navigator.userAgent) ||
@@ -67,12 +84,23 @@ const handleScroll = (evt: Event) => {
   }
 }
 
+let startX: number = 0
 let startY: number = 0
+// Inside a carousel, a swipe is only a section change once it has clearly gone vertical
+let startedInCarousel = false
+let swipeAxis: 'x' | 'y' | null = null
 
 const handleTouchMove = (evt: TouchEvent) => {
   if (!evt.touches || evt.touches.length === 0) return
 
+  const touchDeltaX = evt.touches[0]!.clientX - startX
   const touchDeltaY = evt.touches[0]!.clientY - startY
+  if (startedInCarousel) {
+    if (!swipeAxis && Math.hypot(touchDeltaX, touchDeltaY) > 10) {
+      swipeAxis = Math.abs(touchDeltaX) > Math.abs(touchDeltaY) ? 'x' : 'y'
+    }
+    if (swipeAxis !== 'y') return
+  }
   if (ticking !== true && !state.isMenuActive) {
     if (touchDeltaY <= -scrollSensitivitySetting && state.currentSection < 4) {
       ticking = true
@@ -89,7 +117,10 @@ const handleTouchMove = (evt: TouchEvent) => {
 
 const handleTouchStart = (evt: TouchEvent) => {
   if (!evt.touches || evt.touches.length === 0) return
+  startX = evt.touches[0]!.clientX
   startY = evt.touches[0]!.clientY
+  startedInCarousel = !!(evt.target as Element | null)?.closest?.('.carousel-track')
+  swipeAxis = null
 }
 
 onMounted(() => {
@@ -116,15 +147,62 @@ onBeforeUnmount(() => {
   overflow: hidden;
 }
 
-.scroll-down {
+/* Scroll down button, framed by the carousel buttons */
+.bottom-nav {
   position: absolute;
   bottom: 5%;
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.scroll-down {
+  position: relative;
   cursor: pointer;
   outline: none;
   background-color: transparent;
   border: none;
-  z-index: 25;
   transition: opacity .25s ease-in-out;
+}
+
+.carousel-btn {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  background-color: transparent;
+  border: 2px solid var(--second);
+  border-radius: 50%;
+  transition: opacity .25s ease-in-out, transform .25s ease-in-out;
+}
+
+.carousel-btn::before {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 10px;
+  height: 10px;
+  content: "";
+  border: solid var(--second);
+  border-width: 0 0 2px 2px;
+}
+
+.carousel-btn.prev::before {
+  transform: translateX(2px) rotate(45deg);
+}
+
+.carousel-btn.next::before {
+  transform: translateX(-2px) rotate(-135deg);
+}
+
+.carousel-btn:hover:not(:disabled) {
+  transform: scale(1.1);
+}
+
+.carousel-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
 }
 
 .scroll-down i {
@@ -139,11 +217,8 @@ onBeforeUnmount(() => {
 }
 
 @media only screen and (max-width: 768px) {
-  .scroll-down {
-    bottom: 5%;
-  }
-
-  .scroll-down i {
+  .scroll-down i,
+  .carousel-btn {
     width: 40px;
     height: 40px;
   }

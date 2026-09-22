@@ -1,25 +1,12 @@
-section .skill {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  width: 1000vw;
-  height: 100%;
-  padding: 25px 0;
-  animation: sliding-1 150s linear infinite;
-}
-
-section .skill:hover {
-  animation-play-state: paused;
-}
-
+/* Scrolling (auto, edges, buttons) is handled by app-carousel.vue */
 section .skill .tech-card {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 10%;
+  flex-shrink: 0;
+  width: 31vw;
   height: 85%;
   margin: 0 1rem;
   color: var(--prime);
@@ -161,7 +148,7 @@ section .skill .tech-card:hover .logo-text {
 /* Large tablets and below */
 @media only screen and (max-width: 1024px) {
   section .skill .tech-card {
-    width: 12%;
+    width: 32vw;
     margin: 0 0.75rem;
   }
 
@@ -183,13 +170,8 @@ section .skill .tech-card:hover .logo-text {
 
 /* Tablets and below */
 @media only screen and (max-width: 768px) {
-  section .skill {
-    width: 1500vw;
-    animation: sliding-1 120s linear infinite;
-  }
-
   section .skill .tech-card {
-    width: 15%;
+    width: 49vw;
     margin: 0 0.65rem;
   }
 
@@ -225,14 +207,12 @@ section .skill .tech-card:hover .logo-text {
 
 /* Mobile landscape and portrait */
 @media only screen and (max-width: 650px) {
-  section .skill {
-    width: 2000vw;
-    animation: sliding-1 160s linear infinite;
-    padding: 20px 0;
+  section .skill .carousel-track {
+    padding-block: 20px;
   }
 
   section .skill .tech-card {
-    width: 18%;
+    width: 66vw;
     margin: 0 0.5rem;
   }
 
@@ -281,13 +261,8 @@ section .skill .tech-card:hover .logo-text {
 
 /* Small mobile devices */
 @media only screen and (max-width: 480px) {
-  section .skill {
-    width: 2500vw;
-    animation: sliding-1 200s linear infinite;
-  }
-
   section .skill .tech-card {
-    width: 22%;
+    width: 80vw;
     margin: 0 0.4rem;
   }
 
@@ -323,12 +298,7 @@ section .skill .tech-card:hover .logo-text {
 
 /* Very small mobile devices */
 @media only screen and (max-width: 360px) {
-  section .skill {
-    width: 3000vw;
-  }
-
   section .skill .tech-card {
-    width: 25%;
     margin: 0 0.3rem;
   }
 
@@ -378,10 +348,6 @@ section .skill .tech-card:hover .logo-text {
 
 /* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
-  section .skill {
-    animation: none;
-  }
-
   section .skill .tech-card .title {
     animation: none;
   }
