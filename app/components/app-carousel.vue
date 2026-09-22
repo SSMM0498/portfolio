@@ -151,9 +151,9 @@ onBeforeUnmount(() => {
 .carousel {
   position: relative;
   isolation: isolate;
-  /* Full bleed: the cards scroll from one screen edge to the other, whatever the section padding */
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
+  /* Full bleed: the cards scroll from one screen edge to the other, whatever the section padding and scale */
+  width: calc(100vw / var(--section-scale, 1));
+  margin-left: calc(50% - 50vw / var(--section-scale, 1));
   height: 100%;
   min-height: 0;
 }

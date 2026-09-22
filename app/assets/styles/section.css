@@ -15,6 +15,9 @@ section.center {
 
 section:not(.banner) {
   padding: 2rem 2rem 0;
+  /* Every section but the hero is drawn a little smaller, so its content sits closer to the center */
+  --section-scale: 0.9;
+  scale: var(--section-scale);
 }
 
 section:not(.active) {
