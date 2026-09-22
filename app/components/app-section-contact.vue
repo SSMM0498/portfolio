@@ -129,10 +129,6 @@ const sendMessage = async () => {
     width: 100%;
   }
 
-  p.contact-text {
-    display: none;
-  }
-
   .content > div {
     font-size: 1.1rem;
     line-height: 1.6rem;

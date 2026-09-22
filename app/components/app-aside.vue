@@ -3,7 +3,7 @@
     <a v-for="social in links" :key="social.name" :href="social.url" :aria-label="social.name" target="_blank"
       rel="noopener">
       <UIcon :name="social.icon" />
-      <span>{{ social.name }}</span>
+      <span class="label">{{ social.name }}</span>
     </a>
   </aside>
 </template>
@@ -45,7 +45,7 @@ const links = socials.filter(social => social.url)
   transition: all 0.3s ease;
 }
 
-.socials a > span {
+.socials a > .label {
   font-size: 1rem;
   white-space: nowrap;
   opacity: 0;
@@ -57,7 +57,7 @@ const links = socials.filter(social => social.url)
   color: var(--main);
 }
 
-.socials a:hover > span {
+.socials a:hover > .label {
   opacity: 1;
   transform: translateX(0);
 }
@@ -74,7 +74,7 @@ const links = socials.filter(social => social.url)
     font-size: 1.35rem;
   }
 
-  .socials a > span {
+  .socials a > .label {
     font-size: 0.9rem;
   }
 }
@@ -105,7 +105,7 @@ const links = socials.filter(social => social.url)
     min-width: auto;
   }
 
-  .socials a > span {
+  .socials a > .label {
     display: none;
   }
 }
