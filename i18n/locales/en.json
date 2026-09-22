@@ -1,0 +1,150 @@
+{
+  "meta": {
+    "title": "Serigne Saliou Mbacké Mbaye — AI & Remote Sensing Research Engineer",
+    "description": "Research Engineer in AI and satellite remote sensing for agriculture: crop yield estimation, crop classification and phenology with Google Earth Engine and machine learning. Open to PhD supervision, research collaborations and freelance missions."
+  },
+  "controls": {
+    "switchLanguage": "Switch to French"
+  },
+  "menu": {
+    "home": "Home",
+    "about": "About Me",
+    "expertise": "Expertise",
+    "projects": "Projects",
+    "contact": "Contact Me"
+  },
+  "hero": {
+    "message": "Turning {data} into {intel}ligence",
+    "data": "data",
+    "intel": "intel"
+  },
+  "about": {
+    "title": "About Me",
+    "bio": "I'm an AI Research Engineer 🧠 and fullstack developer 🔧 specializing in AI, satellite remote sensing, and agricultural applications. My work focuses on crop yield estimation, classification, phenology, and geospatial analysis using Google Earth Engine and machine learning. I build scalable solutions that turn research and data into practical applications."
+  },
+  "tech": {
+    "python": "My main language for ML and geodata",
+    "pytorch": "Deep learning models",
+    "tensorflow": "Neural networks with Keras",
+    "scikitlearn": "Ridge, Random Forest and ML pipelines",
+    "xgboost": "Gradient boosting for crop classification",
+    "pandas": "Data wrangling and feature engineering",
+    "numpy": "Numerical computing on arrays",
+    "jupyter": "Exploration and experiment notebooks",
+    "colab": "GPU notebooks for training",
+    "spacy": "NLP: tokenization, named entities",
+    "gee": "Satellite imagery analysis at scale",
+    "qgis": "Mapping and spatial analysis",
+    "postgis": "Spatial databases",
+    "leaflet": "Interactive web maps",
+    "mapbox": "Vector maps and geovisualization",
+    "typescript": "Typed full-stack applications",
+    "nodejs": "APIs and backend services",
+    "nestjs": "Structured Node.js backends",
+    "expressjs": "Lightweight REST APIs",
+    "go": "Fast, concurrent services",
+    "django": "Python web backends",
+    "springboot": "Java APIs",
+    "php": "Laravel web applications",
+    "dotnet": "C# and .NET services",
+    "vuejs": "My go-to frontend framework",
+    "nuxtjs": "This site is built with it",
+    "reactjs": "React and Next.js applications",
+    "flutter": "Cross-platform mobile apps",
+    "docker": "Containers and deployment",
+    "git": "Versioning and collaboration"
+  },
+  "expertise": {
+    "title": "Research & Expertise",
+    "subtitle": "From AI research on satellite data to software in production.",
+    "remoteSensing": {
+      "title": "Remote Sensing",
+      "description": "Satellite imagery analysis to monitor crops over the season."
+    },
+    "cropAnalytics": {
+      "title": "Crop Analytics",
+      "description": "Yield estimation, crop classification and phenology analysis."
+    },
+    "geoAI": {
+      "title": "Geospatial AI",
+      "description": "Machine-learning pipelines on Google Earth Engine."
+    },
+    "vision": {
+      "title": "Computer Vision",
+      "description": "Deep learning for images and video: CNNs, transfer learning."
+    },
+    "geoApps": {
+      "title": "Geo Web Apps",
+      "description": "Maps and dashboards with Leaflet, Mapbox and PostGIS."
+    },
+    "fullstack": {
+      "title": "Full-stack Dev",
+      "description": "Web and mobile applications, from API to deployment."
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Selected work in remote sensing, AI and software.",
+    "view": "View project",
+    "cropYield": {
+      "title": "Crop Yield",
+      "context": "Tolbi · 2026",
+      "description": "Estimating crop yields from satellite imagery with Ridge Regression."
+    },
+    "cropTypes": {
+      "title": "Crop Types",
+      "context": "Tolbi · 2026",
+      "description": "Detecting and classifying crops from satellite imagery with XGBoost."
+    },
+    "phenology": {
+      "title": "Crop Phenology",
+      "context": "Tolbi · 2026",
+      "description": "Tracking crop growth stages across the season from satellite data."
+    },
+    "emotions": {
+      "title": "Emotions Detector",
+      "context": "Zone01",
+      "description": "Real-time facial emotion detection from a webcam stream, with a CNN and transfer learning."
+    },
+    "nlpScraper": {
+      "title": "NLP Scraper",
+      "context": "Zone01",
+      "description": "News intelligence: scraping, named-entity recognition, sentiment analysis and classification."
+    },
+    "codeCourses": {
+      "title": "Code Courses",
+      "context": "Engineering thesis · 2022",
+      "description": "A platform to share programming courses, with screen recording, interactive video playback and an in-browser code sandbox."
+    },
+    "creditScoring": {
+      "title": "Credit Scoring",
+      "context": "Zone01",
+      "description": "Default-risk prediction with interpretable machine-learning models."
+    },
+    "sp500": {
+      "title": "SP500 Strategies",
+      "context": "Zone01",
+      "description": "A machine-learning trading strategy with feature engineering and backtesting."
+    },
+    "titanic": {
+      "title": "Kaggle Titanic",
+      "context": "Zone01",
+      "description": "Survival prediction: data analysis, feature engineering and cross-validation."
+    }
+  },
+  "contact": {
+    "title": "Get in touch!",
+    "lead": "Let's work together",
+    "text": "I'm open to PhD, research collaborations, and freelance opportunities.",
+    "cv": "Download my CV",
+    "name": "Your full name",
+    "email": "Your email",
+    "phone": "Your phone number",
+    "subject": "Subject",
+    "message": "The message",
+    "success": "Great! Your message has been sent successfully. I will try to respond quickly.",
+    "error": "Something went wrong. Did you fill out all of the fields?",
+    "submit": "Submit",
+    "loading": "Loading..."
+  }
+}

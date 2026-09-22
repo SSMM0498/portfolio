@@ -77,3 +77,63 @@ section .services .glass-card h2 {
 section .services .glass-card:hover h2 {
     transform: rotate(-25deg) translate(-12.5%, 125%);
 }
+
+/* Description, tags and link revealed on hover */
+section .services .glass-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 1.5rem;
+    color: var(--second);
+    opacity: 0;
+    transform: translateY(-1rem);
+    transition: opacity 0.5s ease-in-out 0.25s, transform 0.5s ease-in-out 0.25s;
+}
+
+section .services .glass-card:hover .glass-info {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+section .services .glass-info .work-category {
+    margin-bottom: 0;
+}
+
+section .services .glass-desc {
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+section .services .glass-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+section .services .glass-tags li {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border: 1px solid var(--second);
+    border-radius: 3px;
+}
+
+section .services .glass-info a {
+    font-weight: 600;
+    color: var(--main);
+}
+
+@media only screen and (max-width: 650px) {
+    section .services .glass-info {
+        padding: 1rem;
+    }
+
+    section .services .glass-desc {
+        font-size: 0.95rem;
+    }
+}

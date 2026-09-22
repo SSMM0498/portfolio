@@ -24,6 +24,23 @@
     line-height: 3rem;
 }
 
+.contact-text .cv-link {
+    align-self: flex-start;
+    margin-top: 2rem;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    line-height: normal;
+    color: var(--prime);
+    background-color: var(--second);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-text .cv-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow);
+}
+
 .contact-text span {
     font-size: 3rem;
     font-weight: bold;
@@ -147,8 +164,21 @@
         min-height: 50dvh;
     }
 
+    /* Only the CV link stays visible */
     .contact-text {
+        width: auto;
+        margin: 0 0 1rem;
+        font-size: 0;
+        line-height: 0;
+    }
+
+    .contact-text span {
         display: none;
+    }
+
+    .contact-text .cv-link {
+        margin-top: 0;
+        font-size: 1rem;
     }
 
     .contact input,

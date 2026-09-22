@@ -18,11 +18,13 @@ const giantList = [
 ].sort(() => Math.random() - 0.5)
 
 const current = ref(0)
+let interval: ReturnType<typeof setInterval>
 onMounted(() => {
-  setInterval(() => {
-    current.value = Math.floor(Math.random() * 168)
+  interval = setInterval(() => {
+    current.value = Math.floor(Math.random() * giantList.length)
   }, 500)
 })
+onBeforeUnmount(() => clearInterval(interval))
 </script>
 <style>
 .tech-wall {

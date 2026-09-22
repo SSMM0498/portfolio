@@ -9,25 +9,26 @@
     <nav class="nav">
       <ul>
         <li>
-          <a href="#Home" @click.prevent="() => handleNavigation(0)">Home</a>
+          <a href="#Home" @click.prevent="() => handleNavigation(0)">{{ t('menu.home') }}</a>
         </li>
         <li>
-          <a href="#AboutMe" @click.prevent="() => handleNavigation(1)">About Me</a>
+          <a href="#AboutMe" @click.prevent="() => handleNavigation(1)">{{ t('menu.about') }}</a>
         </li>
         <li>
-          <a href="#MyServices" @click.prevent="() => handleNavigation(2)">My Services</a>
+          <a href="#MyServices" @click.prevent="() => handleNavigation(2)">{{ t('menu.expertise') }}</a>
         </li>
         <li>
-          <a href="#MyWorks" @click.prevent="() => handleNavigation(3)">My Works</a>
+          <a href="#MyWorks" @click.prevent="() => handleNavigation(3)">{{ t('menu.projects') }}</a>
         </li>
         <li>
-          <a href="#ContactMe" @click.prevent="() => handleNavigation(4)">Contact Me</a>
+          <a href="#ContactMe" @click.prevent="() => handleNavigation(4)">{{ t('menu.contact') }}</a>
         </li>
       </ul>
     </nav>
   </div>
 </template>
 <script setup lang="ts">
+const { t } = useI18n()
 const { state, goToSection, toggle } = useSectionCurrent()
 
 const handleNavigation = (index: number) => {

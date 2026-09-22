@@ -1,8 +1,11 @@
 <template>
   <div class="body" :class="{ hide: state.currentSection > 0 }">
     <app-menu />
-    <theme-toggle />
-    <p class="message">With me be in<span>nova</span>tive, <span>prod</span>uctive & <span>crea</span>tive</p>
+    <app-controls />
+    <i18n-t keypath="hero.message" tag="p" class="message" scope="global">
+      <template #data><span>{{ t('hero.data') }}</span></template>
+      <template #intel><span>{{ t('hero.intel') }}</span></template>
+    </i18n-t>
     <main>
       <div class="circle1" :class="{ right: isUpperHome }"></div>
       <div class="circle2" :class="{ left: isUpperHome }"></div>
@@ -19,6 +22,7 @@
 </template>
 <script setup lang="ts">
 const scrollSensitivitySetting = 5
+const { t } = useI18n()
 const { state, decrement, increment } = useSectionCurrent()
 const isUpperHome = ref(false)
 let ticking = false
@@ -92,6 +96,13 @@ onMounted(() => {
   window.addEventListener('wheel', handleScroll, false)
   window.addEventListener('touchmove', handleTouchMove, false)
   window.addEventListener('touchstart', handleTouchStart, false)
+})
+
+// The page is remounted when the locale changes (/ ↔ /fr)
+onBeforeUnmount(() => {
+  window.removeEventListener('wheel', handleScroll, false)
+  window.removeEventListener('touchmove', handleTouchMove, false)
+  window.removeEventListener('touchstart', handleTouchStart, false)
 })
 </script>
 <style scoped lang="css">
@@ -181,8 +192,8 @@ onMounted(() => {
 main .circle1,
 main .circle2 {
   position: absolute;
-  width: max(22.5vw, 22.5dvh);
-  height: max(22.5vw, 22.5dvh);
+  width: max(35vw, 35dvh);
+  height: max(35vw, 35dvh);
   border-radius: 50%;
   background-color: var(--main);
   filter: blur(1px);
@@ -195,8 +206,8 @@ main .circle1.right {
 }
 
 main .circle2 {
-  width: max(27.5vw, 27.5dvh);
-  height: max(27.5vw, 27.5dvh);
+  width: max(40vw, 40dvh);
+  height: max(40vw, 40dvh);
   opacity: 0.5;
   filter: blur(15px);
 }
@@ -204,6 +215,31 @@ main .circle2 {
 main .circle2.left {
   filter: blur(20px);
   transform: translate(50px, -50px);
+}
+
+/* Mobile: one big circle across the full screen width, halo slightly larger */
+@media only screen and (max-width: 650px) {
+  main .circle1 {
+    width: 100vw;
+    height: 100vw;
+  }
+
+  main .circle2 {
+    width: 122vw;
+    height: 122vw;
+  }
+
+  /* Lower on the hero… */
+  main .circle1,
+  main .circle2 {
+    transform: translateY(35dvh);
+  }
+
+  /* …then back to the center, and smaller, as soon as the scroll starts */
+  .hide main .circle1,
+  .hide main .circle2 {
+    transform: scale(0.6);
+  }
 }
 
 main.cre .circle2,

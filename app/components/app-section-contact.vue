@@ -1,35 +1,34 @@
 <template>
   <section id="#Contact">
-    <h1>Get in touch !</h1>
+    <h1>{{ t('contact.title') }}</h1>
     <div class="content row">
       <div v-if="success">
-        Great! Your message has been sent successfully. I will try to
-        respond quickly.
+        {{ t('contact.success') }}
       </div>
       <form v-else @submit.prevent="sendMessage" class="contact" action="">
-        <input required v-model="form.name" name="name" type="name" placeholder="Your full name" />
-        <input required v-model="form.email" name="email" type="email" placeholder="Your email" />
-        <input required v-model="form.phoneNumber" name="phoneNumber" type="text" placeholder="Your phone number" />
-        <input required v-model="form.subject" name="subject" type="text" placeholder="Subject" />
-        <textarea required v-model="form.message" name="message" placeholder="The message"></textarea>
+        <input required v-model="form.name" name="name" type="name" :placeholder="t('contact.name')" />
+        <input required v-model="form.email" name="email" type="email" :placeholder="t('contact.email')" />
+        <input required v-model="form.phoneNumber" name="phoneNumber" type="text" :placeholder="t('contact.phone')" />
+        <input required v-model="form.subject" name="subject" type="text" :placeholder="t('contact.subject')" />
+        <textarea required v-model="form.message" name="message" :placeholder="t('contact.message')"></textarea>
         <div v-if="errored" class="mb-4">
-          Something went wrong. Did you fill out all of the
-          fields?
+          {{ t('contact.error') }}
         </div>
         <button>
-          <template v-if="loading">Loading...</template>
-          <template v-if="!loading">Submit</template>
+          <template v-if="loading">{{ t('contact.loading') }}</template>
+          <template v-if="!loading">{{ t('contact.submit') }}</template>
         </button>
       </form>
       <p class="contact-text">
-        <span>Have a question ?</span> Send me a mail <br />
-        and let's talk about <br />
-        all of your needs
+        <span>{{ t('contact.lead') }}</span>
+        {{ t('contact.text') }}
+        <a class="cv-link" href="/cv/serigne-saliou-mbaye-cv.pdf" download>{{ t('contact.cv') }}</a>
       </p>
     </div>
   </section>
 </template>
 <script setup lang="ts">
+const { t } = useI18n()
 const loading = ref(false)
 const success = ref(false)
 const errored = ref(false)

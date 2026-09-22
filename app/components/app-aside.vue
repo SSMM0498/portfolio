@@ -1,19 +1,17 @@
 <template>
   <aside class="socials">
-    <a href="https://github.com/ssmm0498" class=" i-fa-github">
-      <span>Github</span>
-    </a>
-    <a href="https://codepen.io/ssmm0498-the-typescripter" class=" i-fa-codepen">
-      <span>CodePen</span>
-    </a>
-    <a href="https://www.linkedin.com/in/ssmm0498/" class=" i-fa-linkedin">
-      <span>LinkedIN</span>
-    </a>
-    <a href="https://dribbble.com/ssmm0498" class=" i-fa-dribbble">
-      <span>Dribbble</span>
+    <a v-for="social in links" :key="social.name" :href="social.url" :aria-label="social.name" target="_blank"
+      rel="noopener">
+      <UIcon :name="social.icon" />
+      <span>{{ social.name }}</span>
     </a>
   </aside>
 </template>
+<script setup lang="ts">
+import socials from '~/utils/socials'
+
+const links = socials.filter(social => social.url)
+</script>
 <style scoped lang="css">
 .socials {
   position: fixed;
@@ -56,7 +54,7 @@
 }
 
 .socials a:hover {
-  color: var(--primary-color, #007bff);
+  color: var(--main);
 }
 
 .socials a:hover > span {
@@ -93,7 +91,7 @@
     gap: 1.5rem;
     padding: 0.75rem 1.5rem;
     border-radius: 2rem;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--field);
     backdrop-filter: blur(10px);
     transition: transform 0.5s ease-in-out;
   }

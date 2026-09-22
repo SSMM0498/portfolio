@@ -50,7 +50,7 @@ section .skill .tech-card .description {
   width: 75%;
   z-index: 3;
   opacity: 0;
-  color: white;
+  color: var(--second);
   transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -140,6 +140,21 @@ section .skill .tech-card img {
 }
 
 section .skill .tech-card:hover img {
+  filter: grayscale(0%) brightness(1);
+}
+
+/* Techs without a logo file */
+section .skill .tech-card .logo-text {
+  position: absolute;
+  font-family: Poppins, sans-serif;
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  font-weight: 800;
+  color: var(--tech-color);
+  filter: grayscale(100%) brightness(0.3);
+  transition: filter 0.5s ease-in-out;
+}
+
+section .skill .tech-card:hover .logo-text {
   filter: grayscale(0%) brightness(1);
 }
 

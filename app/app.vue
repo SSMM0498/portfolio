@@ -1,8 +1,10 @@
 <script lang="ts" setup>
-useHead({
-  title: "Portfolio | SSMM0498",
+const { t } = useI18n()
+const localeHead = useLocaleHead()
+
+useHead(() => ({
   htmlAttrs: {
-    lang: "en",
+    lang: localeHead.value.htmlAttrs.lang,
   },
   meta: [
     { charset: "utf-8" },
@@ -10,12 +12,21 @@ useHead({
       name: "viewport",
       content: "width=device-width, initial-scale=1",
     },
-    { name: "description", content: "" },
     { name: "format-detection", content: "telephone=no" },
+    ...localeHead.value.meta,
   ],
   link: [
     { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+    ...localeHead.value.link,
   ],
+}));
+
+useSeoMeta({
+  title: () => t("meta.title"),
+  description: () => t("meta.description"),
+  ogTitle: () => t("meta.title"),
+  ogDescription: () => t("meta.description"),
+  ogType: "website",
 });
 </script>
 <template>

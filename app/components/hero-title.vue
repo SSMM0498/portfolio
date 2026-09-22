@@ -38,11 +38,13 @@ const dotTopPosition = computed(() => {
   }
 });
 
-onMounted(() =>
-  setInterval(() => {
+let interval: ReturnType<typeof setInterval>
+onMounted(() => {
+  interval = setInterval(() => {
     switchTitle()
   }, 7000)
-)
+})
+onBeforeUnmount(() => clearInterval(interval))
 </script>
 <style scoped>
 .content {

@@ -1,0 +1,150 @@
+{
+  "meta": {
+    "title": "Serigne Saliou Mbacké Mbaye — Ingénieur de recherche en IA et télédétection",
+    "description": "Ingénieur de recherche en IA et télédétection satellite pour l'agriculture : estimation des rendements, classification des cultures et phénologie avec Google Earth Engine et le machine learning. Ouvert à un encadrement de thèse, à des collaborations de recherche et à des missions freelance."
+  },
+  "controls": {
+    "switchLanguage": "Passer en anglais"
+  },
+  "menu": {
+    "home": "Accueil",
+    "about": "À propos",
+    "expertise": "Expertise",
+    "projects": "Projets",
+    "contact": "Contact"
+  },
+  "hero": {
+    "message": "Transformer les {data} en {intel}ligence",
+    "data": "données",
+    "intel": "intel"
+  },
+  "about": {
+    "title": "À propos",
+    "bio": "Je suis ingénieur de recherche en IA 🧠 et développeur fullstack 🔧, spécialisé en IA, en télédétection satellite et en applications agricoles. Mon travail porte sur l'estimation des rendements, la classification, la phénologie et l'analyse géospatiale avec Google Earth Engine et le machine learning. Je conçois des solutions évolutives qui transforment la recherche et les données en applications concrètes."
+  },
+  "tech": {
+    "python": "Mon langage principal pour le ML et la géodonnée",
+    "pytorch": "Modèles de deep learning",
+    "tensorflow": "Réseaux de neurones avec Keras",
+    "scikitlearn": "Ridge, Random Forest et pipelines ML",
+    "xgboost": "Gradient boosting pour classer les cultures",
+    "pandas": "Préparation des données et feature engineering",
+    "numpy": "Calcul numérique sur tableaux",
+    "jupyter": "Notebooks d'exploration et d'expériences",
+    "colab": "Notebooks GPU pour l'entraînement",
+    "spacy": "NLP : tokenisation, entités nommées",
+    "gee": "Analyse d'imagerie satellite à grande échelle",
+    "qgis": "Cartographie et analyse spatiale",
+    "postgis": "Bases de données spatiales",
+    "leaflet": "Cartes web interactives",
+    "mapbox": "Cartes vectorielles et géovisualisation",
+    "typescript": "Applications full-stack typées",
+    "nodejs": "API et services backend",
+    "nestjs": "Backends Node.js structurés",
+    "expressjs": "API REST légères",
+    "go": "Services rapides et concurrents",
+    "django": "Backends web en Python",
+    "springboot": "API Java",
+    "php": "Applications web Laravel",
+    "dotnet": "Services C# et .NET",
+    "vuejs": "Mon framework frontend de prédilection",
+    "nuxtjs": "Ce site est fait avec",
+    "reactjs": "Applications React et Next.js",
+    "flutter": "Applications mobiles multiplateformes",
+    "docker": "Conteneurs et déploiement",
+    "git": "Versionnage et collaboration"
+  },
+  "expertise": {
+    "title": "Recherche & expertise",
+    "subtitle": "De la recherche en IA sur données satellite jusqu'au logiciel en production.",
+    "remoteSensing": {
+      "title": "Télédétection",
+      "description": "Analyse d'images satellite pour suivre les cultures au fil de la saison."
+    },
+    "cropAnalytics": {
+      "title": "Suivi des cultures",
+      "description": "Estimation des rendements, classification et phénologie des cultures."
+    },
+    "geoAI": {
+      "title": "IA géospatiale",
+      "description": "Pipelines de machine learning sur Google Earth Engine."
+    },
+    "vision": {
+      "title": "Vision artificielle",
+      "description": "Deep learning pour l'image et la vidéo : CNN, transfer learning."
+    },
+    "geoApps": {
+      "title": "Web SIG",
+      "description": "Cartes et tableaux de bord avec Leaflet, Mapbox et PostGIS."
+    },
+    "fullstack": {
+      "title": "Dév full-stack",
+      "description": "Applications web et mobiles, de l'API au déploiement."
+    }
+  },
+  "projects": {
+    "title": "Projets",
+    "subtitle": "Une sélection de travaux en télédétection, IA et développement.",
+    "view": "Voir le projet",
+    "cropYield": {
+      "title": "Rendements",
+      "context": "Tolbi · 2026",
+      "description": "Estimation des rendements agricoles par imagerie satellite avec une régression Ridge."
+    },
+    "cropTypes": {
+      "title": "Types de cultures",
+      "context": "Tolbi · 2026",
+      "description": "Détection et classification des cultures par imagerie satellite avec XGBoost."
+    },
+    "phenology": {
+      "title": "Phénologie",
+      "context": "Tolbi · 2026",
+      "description": "Suivi des stades de croissance des cultures au fil de la saison, à partir de données satellite."
+    },
+    "emotions": {
+      "title": "Emotions Detector",
+      "context": "Zone01",
+      "description": "Détection des émotions faciales en temps réel depuis une webcam, avec un CNN et du transfer learning."
+    },
+    "nlpScraper": {
+      "title": "NLP Scraper",
+      "context": "Zone01",
+      "description": "Veille d'actualité : scraping, reconnaissance d'entités nommées, analyse de sentiment et classification."
+    },
+    "codeCourses": {
+      "title": "Cours de code",
+      "context": "Projet de fin d'études · 2022",
+      "description": "Une plateforme de partage de cours de programmation, avec enregistrement d'écran, vidéo interactive et bac à sable de code dans le navigateur."
+    },
+    "creditScoring": {
+      "title": "Credit Scoring",
+      "context": "Zone01",
+      "description": "Prédiction du risque de défaut avec des modèles de machine learning interprétables."
+    },
+    "sp500": {
+      "title": "SP500 Strategies",
+      "context": "Zone01",
+      "description": "Une stratégie de trading par machine learning, avec feature engineering et backtesting."
+    },
+    "titanic": {
+      "title": "Kaggle Titanic",
+      "context": "Zone01",
+      "description": "Prédiction de survie : analyse de données, feature engineering et validation croisée."
+    }
+  },
+  "contact": {
+    "title": "Contactez-moi !",
+    "lead": "Travaillons ensemble",
+    "text": "Ouvert à un encadrement de thèse, à des collaborations de recherche et à des missions freelance en IA et télédétection.",
+    "cv": "Télécharger mon CV",
+    "name": "Nom complet",
+    "email": "Adresse email",
+    "phone": "Numéro de téléphone",
+    "subject": "Objet",
+    "message": "Votre message",
+    "success": "Merci ! Votre message a bien été envoyé. Je vous réponds rapidement.",
+    "error": "Une erreur est survenue. Avez-vous rempli tous les champs ?",
+    "submit": "Envoyer",
+    "loading": "Envoi..."
+  }
+}

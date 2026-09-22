@@ -7,7 +7,9 @@
 img {
   position: absolute;
   bottom: 0;
-  height: 80dvh;
+  /* 80% of the screen height, but never wider than the screen (image ratio 1792×2390 → 133vw) */
+  height: min(80dvh, 133vw);
+  width: auto;
 }
 
 .avatar-light {
