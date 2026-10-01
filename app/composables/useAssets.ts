@@ -1,22 +1,19 @@
 // composables/useAssets.ts
 import { filename } from 'pathe/utils'
 
-export default function useAssets(path: string) {
-    let assets
-    if (/(\.svg)$/i.exec(path)) assets = import.meta.glob('~/assets/img/**/*.svg', { eager: true })
-    else if (/(\.png)$/i.exec(path)) assets = import.meta.glob('~/assets/img/**/*.png', { eager: true })
-    else assets = import.meta.glob('~/assets/img/**/*.jpg', { eager: true })
-    const fileName = filename(path)
-    if (!fileName) return '';
-    const images = Object.fromEntries(
-        Object.entries(assets).map(([key, value]) => [filename(key), (value as Record<string, any>).default]),
-    )
-    return images[fileName]
-}
+// Vite needs a literal glob pattern, so the tech logos are resolved once at module
+// scope and looked up by basename. Keep the extensions in sync with the files in
+// app/assets/img/techs — a logo whose extension is missing here renders as nothing.
+const modules = import.meta.glob<{ default: string }>(
+    '~/assets/img/techs/*.{svg,png,webp}',
+    { eager: true },
+)
 
-export const getImages = () => {
-    const assets = import.meta.glob('~/assets/img/**/*.(svg|png|jpg|jpeg)', { eager: true })
-    return Object.fromEntries(
-        Object.entries(assets).map(([key, value]) => [filename(key), (value as Record<string, any>).default]),
-    )
+const logos: Record<string, string> = Object.fromEntries(
+    Object.entries(modules).map(([path, module]) => [filename(path), module.default]),
+)
+
+export default function useAssets(path: string) {
+    const name = filename(path)
+    return name ? logos[name] ?? '' : ''
 }

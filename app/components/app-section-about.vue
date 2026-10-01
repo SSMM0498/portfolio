@@ -8,7 +8,7 @@
     <app-carousel name="about" :duration="70" class="skill">
       <div class="tech-card" v-for="tech in techList" :key="tech.id">
         <div class="tech-back"></div>
-        <img v-if="tech.logo" :src="useAssets(`techs/${tech.logo}`)" :alt="tech.name" />
+        <img v-if="tech.logo" :src="useAssets(`techs/${tech.logo}`)" :alt="tech.name" loading="lazy" decoding="async" />
         <span v-else class="logo-text" :style="{ '--tech-color': tech.color }">{{ tech.name }}</span>
         <p class="description">{{ t(`tech.${tech.id}`) }}</p>
       </div>
