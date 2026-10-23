@@ -5,14 +5,26 @@
         <div class="ctrl-btn" />
       </template>
     </UColorModeButton>
-    <UButton :to="switchLocalePath(otherLocale)" :label="otherLocale.toUpperCase()"
+    <UButton :to="otherLocalePath" :label="otherLocale.toUpperCase()"
       :aria-label="t('controls.switchLanguage')" color="neutral" variant="solid" size="lg" class="ctrl-btn" />
   </div>
 </template>
 <script setup lang="ts">
 const { locale, t } = useI18n()
+const route = useRoute()
 const switchLocalePath = useSwitchLocalePath()
 const otherLocale = computed(() => (locale.value === 'en' ? 'fr' : 'en'))
+
+// The hash keeps the visible section across languages. The server never receives it,
+// so it is only added once hydrated, for the link to match the server-rendered one.
+const isHydrated = ref(false)
+onMounted(() => {
+  isHydrated.value = true
+})
+const otherLocalePath = computed(() => {
+  const path = switchLocalePath(otherLocale.value).split('#')[0]
+  return isHydrated.value ? path + route.hash : path
+})
 </script>
 <style scoped lang="css">
 .controls {
@@ -53,15 +65,23 @@ const otherLocale = computed(() => (locale.value === 'en' ? 'fr' : 'en'))
   }
 }
 
+/* One row, level with the scroll and carousel buttons (.bottom-nav in pages/index.vue) and the same size */
 @media only screen and (max-width: 768px) {
   .controls {
-    bottom: 1rem;
+    flex-direction: row;
+    bottom: 5%;
     right: 1rem;
   }
 
   .controls :deep(.ctrl-btn) {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media only screen and (max-width: 374px) {
+  .controls {
+    right: 0.5rem;
   }
 }
 </style>

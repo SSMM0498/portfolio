@@ -1,27 +1,17 @@
 <template>
   <div class="menu" :class="{ active: state.isMenuActive }">
     <div class="menu-btn">
-      <button class="nav-tgl" type="button" aria-label="toggle menu" @click.prevent="toggle">
+      <button ref="toggleButton" class="nav-tgl" type="button" :aria-label="t(state.isMenuActive ? 'menu.close' : 'menu.open')"
+        :aria-expanded="state.isMenuActive" aria-controls="site-nav" @click.prevent="toggle">
         <span aria-hidden="true"></span>
       </button>
         <div v-if="!state.isMenuActive" class="logo">ssmm0498</div>
     </div>
-    <nav class="nav">
+    <nav id="site-nav" class="nav" :aria-label="t('menu.label')" :inert="!state.isMenuActive">
       <ul>
-        <li>
-          <a href="#Home" @click.prevent="() => handleNavigation(0)">{{ t('menu.home') }}</a>
-        </li>
-        <li>
-          <a href="#AboutMe" @click.prevent="() => handleNavigation(1)">{{ t('menu.about') }}</a>
-        </li>
-        <li>
-          <a href="#MyServices" @click.prevent="() => handleNavigation(2)">{{ t('menu.expertise') }}</a>
-        </li>
-        <li>
-          <a href="#MyWorks" @click.prevent="() => handleNavigation(3)">{{ t('menu.projects') }}</a>
-        </li>
-        <li>
-          <a href="#ContactMe" @click.prevent="() => handleNavigation(4)">{{ t('menu.contact') }}</a>
+        <li v-for="(id, index) in SECTION_IDS" :key="id">
+          <a :href="`#${id}`" :aria-current="state.currentSection === index ? 'true' : undefined"
+            @click.prevent="() => handleNavigation(index)">{{ t(`menu.${id}`) }}</a>
         </li>
       </ul>
     </nav>
@@ -30,11 +20,26 @@
 <script setup lang="ts">
 const { t } = useI18n()
 const { state, goToSection, toggle } = useSectionCurrent()
+const toggleButton = ref<HTMLButtonElement | null>(null)
 
 const handleNavigation = (index: number) => {
   toggle()
   setTimeout(() => goToSection(index), 750)
 }
+
+// Focus goes into the menu when it opens, and back to its button when it closes
+watch(() => state.isMenuActive, async (isActive) => {
+  await nextTick()
+  if (isActive) document.querySelector<HTMLElement>('#site-nav a')?.focus({ preventScroll: true })
+  else toggleButton.value?.focus({ preventScroll: true })
+})
+
+const handleKeydown = (evt: KeyboardEvent) => {
+  if (evt.key === 'Escape' && state.isMenuActive) toggle()
+}
+
+onMounted(() => window.addEventListener('keydown', handleKeydown))
+onBeforeUnmount(() => window.removeEventListener('keydown', handleKeydown))
 </script>
 <style scoped lang="css">
 .logo {
@@ -160,10 +165,6 @@ const handleNavigation = (index: number) => {
 .nav-tgl>span::after {
   top: 7px;
   width: 20px;
-}
-
-.nav-tgl:focus {
-  outline: none;
 }
 
 .nav-tgl:hover>span::after,

@@ -1,14 +1,25 @@
 {
   "meta": {
     "title": "Serigne Saliou Mbacké Mbaye — AI & Remote Sensing Research Engineer",
-    "description": "Research Engineer in AI and satellite remote sensing for agriculture: crop yield estimation, crop classification and phenology with Google Earth Engine and machine learning. Open to PhD supervision, research collaborations and freelance missions."
+    "description": "Research Engineer in AI and satellite remote sensing for agriculture: crop yield estimation, crop classification and phenology with Google Earth Engine and machine learning. Open to PhD supervision, research collaborations and freelance missions.",
+    "jobTitle": "AI & Remote Sensing Research Engineer"
   },
   "controls": {
-    "switchLanguage": "Switch to French",
+    "switchLanguage": "FR, switch to French",
     "carouselPrev": "Scroll carousel left",
-    "carouselNext": "Scroll carousel right"
+    "carouselNext": "Scroll carousel right",
+    "nextSection": "Next section",
+    "newTab": "opens in a new tab"
+  },
+  "error": {
+    "notFound": "This page does not exist.",
+    "generic": "Something went wrong.",
+    "back": "Back to home"
   },
   "menu": {
+    "label": "Sections",
+    "open": "Open menu",
+    "close": "Close menu",
     "home": "Home",
     "about": "About Me",
     "expertise": "Expertise",
@@ -146,7 +157,9 @@
     "subject": "Subject",
     "message": "The message",
     "success": "Great! Your message has been sent successfully. I will try to respond quickly.",
-    "error": "Something went wrong. Did you fill out all of the fields?",
+    "error": "Your message could not be sent. Please try again later, or reach me on LinkedIn.",
+    "errorInvalid": "Please check the highlighted fields.",
+    "errorRateLimited": "Too many messages have been sent. Please try again in an hour.",
     "submit": "Submit",
     "loading": "Loading..."
   }

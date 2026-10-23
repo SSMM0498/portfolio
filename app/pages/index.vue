@@ -6,21 +6,23 @@
       <template #data><span>{{ t('hero.data') }}</span></template>
       <template #intel><span>{{ t('hero.intel') }}</span></template>
     </i18n-t>
-    <main>
+    <!-- While the menu is open, Tab stays in it -->
+    <main :inert="state.isMenuActive">
       <div class="circle1" :class="{ right: isUpperHome }"></div>
       <div class="circle2" :class="{ left: isUpperHome }"></div>
       <div :class="{ full: state.currentSection > 0, glass: true }"></div>
-      <app-aside :class="{ active: state.currentSection === 4 }" />
-      <app-section-hero :class="{ active: state.currentSection === 0 }" />
-      <app-section-about :class="{ active: state.currentSection === 1 }" />
-      <app-section-service :class="{ active: state.currentSection === 2 }" />
-      <app-section-work :class="{ active: state.currentSection === 3 }" />
-      <app-section-contact :class="{ active: state.currentSection === 4 }" />
+      <app-aside v-bind="sectionAttrs(LAST_SECTION)" />
+      <app-section-hero v-bind="sectionAttrs(0)" />
+      <app-section-about v-bind="sectionAttrs(1)" />
+      <app-section-service v-bind="sectionAttrs(2)" />
+      <app-section-work v-bind="sectionAttrs(3)" />
+      <app-section-contact v-bind="sectionAttrs(4)" />
     </main>
-    <div class="bottom-nav">
+    <div class="bottom-nav" :inert="state.isMenuActive">
       <button v-show="activeCarousel" class="carousel-btn prev" :disabled="!activeCarousel?.canPrev.value"
         :aria-label="t('controls.carouselPrev')" @click="activeCarousel?.scrollPage(-1)"></button>
-      <button class="scroll-down" v-show="state.currentSection < 4" @click="increment"><i></i></button>
+      <button class="scroll-down" v-show="state.currentSection < LAST_SECTION" :aria-label="t('controls.nextSection')"
+        @click="increment"><i></i></button>
       <button v-show="activeCarousel" class="carousel-btn next" :disabled="!activeCarousel?.canNext.value"
         :aria-label="t('controls.carouselNext')" @click="activeCarousel?.scrollPage(1)"></button>
     </div>
@@ -29,7 +31,9 @@
 <script setup lang="ts">
 const scrollSensitivitySetting = 5
 const { t } = useI18n()
-const { state, decrement, increment } = useSectionCurrent()
+const route = useRoute()
+const router = useRouter()
+const { state, goToSection, decrement, increment } = useSectionCurrent()
 const isUpperHome = ref(false)
 let ticking = false
 
@@ -41,10 +45,26 @@ const activeCarousel = computed(() => {
   return name ? carousels.get(name) : undefined
 })
 
+// The hidden sections stay in the page: inert keeps them out of Tab and screen readers
+const sectionAttrs = (index: number) => ({
+  class: { active: state.currentSection === index },
+  inert: state.currentSection !== index,
+})
+
 const slideDurationTimeout = (slideDuration: number) => {
   setTimeout(function () {
     ticking = false
   }, slideDuration)
+}
+
+// One section up or down, at most once per slide
+const changeSection = (direction: 1 | -1) => {
+  if (ticking || state.isMenuActive) return
+  if (direction > 0 ? state.currentSection >= LAST_SECTION : state.currentSection <= 0) return
+  ticking = true
+  if (direction > 0) increment()
+  else decrement()
+  slideDurationTimeout(1000)
 }
 
 watch(state, () => {
@@ -52,6 +72,56 @@ watch(state, () => {
     isUpperHome.value = state.currentSection > 0
   }, 750)
 })
+
+// The URL hash names the visible section (none for the first), so each section can be linked to
+const sectionFromHash = (hash: string) => Math.max(SECTION_IDS.indexOf(hash.slice(1)), 0)
+
+watch(() => route.hash, hash => goToSection(sectionFromHash(hash)))
+
+watch(() => state.currentSection, (index) => {
+  const hash = index > 0 ? `#${SECTION_IDS[index]}` : ''
+  if (route.hash !== hash) router.replace({ hash })
+  // Focus follows, so keyboard and screen reader users carry on from the new section
+  document.getElementById(`section-${SECTION_IDS[index]}-title`)?.focus({ preventScroll: true })
+}, { flush: 'post' })
+
+const handleKeydown = (evt: KeyboardEvent) => {
+  if (evt.defaultPrevented || evt.altKey || evt.ctrlKey || evt.metaKey || state.isMenuActive) return
+  const target = evt.target as Element
+  // Keys keep their usual meaning while typing in the form
+  if (target.closest('input, textarea, select, [contenteditable="true"]')) return
+
+  switch (evt.key) {
+    case 'ArrowDown':
+    case 'PageDown':
+      changeSection(1)
+      break
+    case 'ArrowUp':
+    case 'PageUp':
+      changeSection(-1)
+      break
+    case ' ':
+      // Space presses the focused link or button
+      if (target.closest('a, button')) return
+      changeSection(evt.shiftKey ? -1 : 1)
+      break
+    case 'Home':
+      goToSection(0)
+      break
+    case 'End':
+      goToSection(LAST_SECTION)
+      break
+    case 'ArrowLeft':
+    case 'ArrowRight':
+      // Inside a carousel, the browser already scrolls it
+      if (!activeCarousel.value || target.closest('.carousel-track')) return
+      activeCarousel.value.scrollPage(evt.key === 'ArrowLeft' ? -1 : 1)
+      break
+    default:
+      return
+  }
+  evt.preventDefault()
+}
 
 const handleScroll = (evt: Event) => {
   // Horizontal scrolling (trackpad, shift + wheel) belongs to the carousels
@@ -70,18 +140,8 @@ const handleScroll = (evt: Event) => {
     delta = (evt as any).wheelDelta
   }
 
-  if (ticking !== true && !state.isMenuActive) {
-    if (delta <= -scrollSensitivitySetting && state.currentSection < 4) {
-      ticking = true
-      increment()
-      slideDurationTimeout(1000)
-    }
-    if (delta >= scrollSensitivitySetting && state.currentSection > 0) {
-      ticking = true
-      decrement()
-      slideDurationTimeout(1000)
-    }
-  }
+  if (delta <= -scrollSensitivitySetting) changeSection(1)
+  else if (delta >= scrollSensitivitySetting) changeSection(-1)
 }
 
 let startX: number = 0
@@ -101,18 +161,8 @@ const handleTouchMove = (evt: TouchEvent) => {
     }
     if (swipeAxis !== 'y') return
   }
-  if (ticking !== true && !state.isMenuActive) {
-    if (touchDeltaY <= -scrollSensitivitySetting && state.currentSection < 4) {
-      ticking = true
-      increment()
-      slideDurationTimeout(1000)
-    }
-    if (touchDeltaY >= scrollSensitivitySetting && state.currentSection > 0) {
-      ticking = true
-      decrement()
-      slideDurationTimeout(1000)
-    }
-  }
+  if (touchDeltaY <= -scrollSensitivitySetting) changeSection(1)
+  else if (touchDeltaY >= scrollSensitivitySetting) changeSection(-1)
 }
 
 const handleTouchStart = (evt: TouchEvent) => {
@@ -124,9 +174,11 @@ const handleTouchStart = (evt: TouchEvent) => {
 }
 
 onMounted(() => {
+  goToSection(sectionFromHash(route.hash))
   window.addEventListener('wheel', handleScroll, false)
   window.addEventListener('touchmove', handleTouchMove, false)
   window.addEventListener('touchstart', handleTouchStart, false)
+  window.addEventListener('keydown', handleKeydown, false)
 })
 
 // The page is remounted when the locale changes (/ ↔ /fr)
@@ -134,6 +186,7 @@ onBeforeUnmount(() => {
   window.removeEventListener('wheel', handleScroll, false)
   window.removeEventListener('touchmove', handleTouchMove, false)
   window.removeEventListener('touchstart', handleTouchStart, false)
+  window.removeEventListener('keydown', handleKeydown, false)
 })
 </script>
 <style scoped lang="css">
@@ -160,7 +213,6 @@ onBeforeUnmount(() => {
 .scroll-down {
   position: relative;
   cursor: pointer;
-  outline: none;
   background-color: transparent;
   border: none;
   transition: opacity .25s ease-in-out;
@@ -217,6 +269,11 @@ onBeforeUnmount(() => {
 }
 
 @media only screen and (max-width: 768px) {
+  /* Narrower, to leave room for the theme and language buttons on the same row */
+  .bottom-nav {
+    gap: 1rem;
+  }
+
   .scroll-down i,
   .carousel-btn {
     width: 40px;

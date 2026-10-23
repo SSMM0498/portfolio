@@ -1,22 +1,31 @@
 <template>
-  <section id="#Contact">
-    <h1>{{ t('contact.title') }}</h1>
+  <section id="section-contact" aria-labelledby="section-contact-title">
+    <h2 id="section-contact-title" class="section-title" tabindex="-1">{{ t('contact.title') }}</h2>
     <div class="content row">
-      <div v-if="success">
+      <div v-if="success" ref="successMessage" class="form-success" tabindex="-1">
         {{ t('contact.success') }}
       </div>
-      <form v-else @submit.prevent="sendMessage" class="contact" action="">
-        <input required v-model="form.name" name="name" type="name" :placeholder="t('contact.name')" />
-        <input required v-model="form.email" name="email" type="email" :placeholder="t('contact.email')" />
-        <input required v-model="form.phoneNumber" name="phoneNumber" type="text" :placeholder="t('contact.phone')" />
-        <input required v-model="form.subject" name="subject" type="text" :placeholder="t('contact.subject')" />
-        <textarea required v-model="form.message" name="message" :placeholder="t('contact.message')"></textarea>
-        <div v-if="errored" class="mb-4">
-          {{ t('contact.error') }}
+      <form v-else @submit.prevent="sendMessage" class="contact">
+        <!-- Anti-spam trap: out of sight and out of reach, so only bots fill it in -->
+        <div class="trap" inert>
+          <label for="contact-website">Website</label>
+          <input id="contact-website" v-model="form.website" name="website" type="text" tabindex="-1" autocomplete="off" />
         </div>
-        <button>
-          <template v-if="loading">{{ t('contact.loading') }}</template>
-          <template v-if="!loading">{{ t('contact.submit') }}</template>
+        <label for="contact-name" class="visually-hidden">{{ t('contact.name') }}</label>
+        <input v-model="form.name" v-bind="fieldAttrs('name')" type="text" autocomplete="name" :placeholder="t('contact.name')" />
+        <label for="contact-email" class="visually-hidden">{{ t('contact.email') }}</label>
+        <input v-model="form.email" v-bind="fieldAttrs('email')" type="email" autocomplete="email" :placeholder="t('contact.email')" />
+        <label for="contact-phoneNumber" class="visually-hidden">{{ t('contact.phone') }}</label>
+        <input v-model="form.phoneNumber" v-bind="fieldAttrs('phoneNumber')" type="tel" autocomplete="tel" :placeholder="t('contact.phone')" />
+        <label for="contact-subject" class="visually-hidden">{{ t('contact.subject') }}</label>
+        <input v-model="form.subject" v-bind="fieldAttrs('subject')" type="text" :placeholder="t('contact.subject')" />
+        <label for="contact-message" class="visually-hidden">{{ t('contact.message') }}</label>
+        <textarea v-model="form.message" v-bind="fieldAttrs('message')" :placeholder="t('contact.message')"></textarea>
+        <div v-if="error" id="contact-error" class="form-error" role="alert">
+          {{ t(ERROR_MESSAGES[error]) }}
+        </div>
+        <button type="submit" :disabled="loading">
+          {{ loading ? t('contact.loading') : t('contact.submit') }}
         </button>
       </form>
       <p class="contact-text">
@@ -28,18 +37,50 @@
   </section>
 </template>
 <script setup lang="ts">
-const { t } = useI18n()
-const { $posthog } = useNuxtApp()
-const loading = ref(false)
-const success = ref(false)
-const errored = ref(false)
-const form = ref({
+type ContactError = 'invalid' | 'rateLimited' | 'failed'
+
+const ERROR_MESSAGES: Record<ContactError, string> = {
+  invalid: 'contact.errorInvalid',
+  rateLimited: 'contact.errorRateLimited',
+  failed: 'contact.error',
+}
+
+const emptyForm = () => ({
   name: '',
   email: '',
   phoneNumber: '',
   subject: '',
   message: '',
-});
+  website: '',
+})
+
+const { t } = useI18n()
+const { $posthog } = useNuxtApp()
+const loading = ref(false)
+const success = ref(false)
+const error = ref<ContactError | null>(null)
+// Fields the server rejected
+const invalidFields = ref<string[]>([])
+const successMessage = ref<HTMLElement | null>(null)
+const form = ref(emptyForm())
+// Sent along so the server can tell a person from a bot posting right after the page loaded
+let mountedAt = 0
+
+onMounted(() => {
+  mountedAt = Date.now()
+})
+
+const fieldAttrs = (name: ContactField) => {
+  const isInvalid = invalidFields.value.includes(name)
+  return {
+    id: `contact-${name}`,
+    name,
+    required: true,
+    maxlength: CONTACT_MAX_LENGTH[name],
+    'aria-invalid': isInvalid || undefined,
+    'aria-describedby': isInvalid ? 'contact-error' : undefined,
+  }
+}
 
 const trackCvDownload = () => {
   $posthog?.capture('cv_downloaded')
@@ -49,22 +90,22 @@ const sendMessage = async () => {
   loading.value = true
   await $fetch('/api/contact', {
     method: 'POST',
-    body: form.value,
-  }).then(() => {
+    body: { ...form.value, elapsed: Date.now() - mountedAt },
+  }).then(async () => {
     $posthog?.capture('contact_form_submitted')
-    errored.value = false;
+    error.value = null
+    invalidFields.value = []
     success.value = true;
-    form.value = {
-      name: '',
-      email: '',
-      phoneNumber: '',
-      subject: '',
-      message: '',
-    };
+    form.value = emptyForm()
+    // The form is gone: keep the focus, and screen readers, on what replaced it
+    await nextTick()
+    successMessage.value?.focus()
   })
-    .catch((_error: any) => {
+    .catch((fetchError: any) => {
       $posthog?.capture('contact_form_submission_failed')
-      errored.value = true
+      const status = fetchError?.statusCode
+      invalidFields.value = status === 400 ? (fetchError.data?.data ?? []).map((field: { field: string }) => field.field) : []
+      error.value = status === 400 ? 'invalid' : status === 429 ? 'rateLimited' : 'failed'
       success.value = false
     })
     .finally(() => {
@@ -74,7 +115,7 @@ const sendMessage = async () => {
 </script>
 <style scoped>
 /* Success and error messages */
-.content > div {
+.form-success {
   font-family: Poppins;
   font-size: 1.5rem;
   line-height: 2rem;
@@ -87,7 +128,7 @@ const sendMessage = async () => {
   margin-right: 100px;
 }
 
-.mb-4 {
+.form-error {
   margin-bottom: 1rem;
   padding: 1rem;
   border-radius: 5px;
@@ -99,7 +140,7 @@ const sendMessage = async () => {
 
 /* Large tablets and below */
 @media only screen and (max-width: 1024px) {
-  .content > div {
+  .form-success {
     font-size: 1.35rem;
     line-height: 1.85rem;
     padding: 1.75rem;
@@ -107,7 +148,7 @@ const sendMessage = async () => {
     margin-right: 80px;
   }
 
-  .mb-4 {
+  .form-error {
     font-size: 0.95rem;
     padding: 0.9rem;
   }
@@ -115,7 +156,7 @@ const sendMessage = async () => {
 
 /* Tablets and below */
 @media only screen and (max-width: 768px) {
-  .content > div {
+  .form-success {
     font-size: 1.25rem;
     line-height: 1.75rem;
     padding: 1.5rem;
@@ -123,7 +164,7 @@ const sendMessage = async () => {
     margin-right: 60px;
   }
 
-  .mb-4 {
+  .form-error {
     font-size: 0.9rem;
     padding: 0.85rem;
   }
@@ -136,7 +177,7 @@ const sendMessage = async () => {
     width: 100%;
   }
 
-  .content > div {
+  .form-success {
     font-size: 1.1rem;
     line-height: 1.6rem;
     padding: 1.25rem;
@@ -145,7 +186,7 @@ const sendMessage = async () => {
     text-align: center;
   }
 
-  .mb-4 {
+  .form-error {
     font-size: 0.9rem;
     padding: 0.75rem;
   }
@@ -153,14 +194,14 @@ const sendMessage = async () => {
 
 /* Small mobile devices */
 @media only screen and (max-width: 480px) {
-  .content > div {
+  .form-success {
     font-size: 1rem;
     line-height: 1.5rem;
     padding: 1rem;
     border-radius: 6px;
   }
 
-  .mb-4 {
+  .form-error {
     font-size: 0.85rem;
     padding: 0.65rem;
     border-radius: 4px;
@@ -169,13 +210,13 @@ const sendMessage = async () => {
 
 /* Very small mobile devices */
 @media only screen and (max-width: 360px) {
-  .content > div {
+  .form-success {
     font-size: 0.95rem;
     line-height: 1.4rem;
     padding: 0.875rem;
   }
 
-  .mb-4 {
+  .form-error {
     font-size: 0.8rem;
     padding: 0.6rem;
   }

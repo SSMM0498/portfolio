@@ -1,13 +1,15 @@
 <template>
-  <section id="#MyServices">
-    <h1>{{ t('expertise.title') }}</h1>
-    <h2>{{ t('expertise.subtitle') }}</h2>
+  <section id="section-expertise" aria-labelledby="section-expertise-title">
+    <h2 id="section-expertise-title" class="section-title" tabindex="-1">{{ t('expertise.title') }}</h2>
+    <p class="section-subtitle">{{ t('expertise.subtitle') }}</p>
     <app-carousel name="expertise" class="services">
-      <div class="glass-card" v-for="id in expertise" :key="id">
+      <!-- Focusable, so the description shown on hover is also shown on keyboard focus -->
+      <div class="glass-card" v-for="id in expertise" :key="id" tabindex="0" role="group"
+        :aria-labelledby="`expertise-${id}`">
         <div class="glass-info">
           <p class="glass-desc">{{ t(`expertise.${id}.description`) }}</p>
         </div>
-        <h2>{{ t(`expertise.${id}.title`) }}</h2>
+        <h3 :id="`expertise-${id}`">{{ t(`expertise.${id}.title`) }}</h3>
       </div>
     </app-carousel>
   </section>

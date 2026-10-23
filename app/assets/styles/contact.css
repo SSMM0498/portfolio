@@ -57,8 +57,20 @@
     color: var(--second);
     background-color: var(--field);
     padding: 10px;
-    outline: none;
     margin-bottom: 1rem;
+}
+
+.contact [aria-invalid="true"] {
+    border-color: var(--red);
+}
+
+/* Anti-spam field: off screen rather than display: none, which some bots skip */
+.contact .trap {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }
 
 .contact input,

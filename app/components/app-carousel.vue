@@ -1,5 +1,6 @@
 <template>
-  <div ref="root" class="carousel" @pointerenter="handlePointerEnter" @pointerleave="handlePointerLeave">
+  <div ref="root" class="carousel" @pointerenter="handlePointerEnter" @pointerleave="handlePointerLeave"
+    @focusin="handleFocusIn" @focusout="handleFocusOut">
     <div ref="track" class="carousel-track" @scroll.passive="update" @touchstart.passive="handleTouchStart"
       @touchend="handleTouchEnd" @touchcancel="handleTouchEnd">
       <slot />
@@ -34,6 +35,8 @@ const carousels = useCarousels()
 // Only read by the animation loop, so they don't need to be reactive
 let edgeDirection: -1 | 0 | 1 = 0
 let isHovered = false
+// A card focused with the keyboard must not scroll away
+let isFocused = false
 let isTouching = false
 let reducedMotion = false
 let position = 0
@@ -61,6 +64,15 @@ const handlePointerEnter = (evt: PointerEvent) => {
 
 const handlePointerLeave = () => {
   isHovered = false
+}
+
+// Only keyboard focus: a tap also focuses the card, and must not pause the auto scroll for good
+const handleFocusIn = (evt: FocusEvent) => {
+  isFocused = (evt.target as Element).matches(':focus-visible')
+}
+
+const handleFocusOut = () => {
+  isFocused = false
 }
 
 const handleTouchStart = () => {
@@ -91,7 +103,7 @@ const step = (now: number) => {
   if (edgeDirection) {
     position = Math.min(Math.max(position + edgeDirection * el.clientWidth * EDGE_SPEED * seconds, 0), max)
     el.scrollLeft = position
-  } else if (!isHovered && !isTouching && !reducedMotion && max > 0
+  } else if (!isHovered && !isFocused && !isTouching && !reducedMotion && max > 0
     && now - interactedAt > IDLE_MS && now > holdUntil) {
     // Back and forth, with a pause at each end
     position += autoDirection * (max / props.duration) * seconds

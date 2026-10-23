@@ -49,11 +49,11 @@ section .skill .tech-card:nth-child(2n) .title {
   animation-duration: 4.5s;
 }
 
-section .skill .tech-card:hover .title {
+section .skill .tech-card:is(:hover, :focus-visible) .title {
   animation-play-state: paused;
 }
 
-section .skill .tech-card:hover .description {
+section .skill .tech-card:is(:hover, :focus-visible) .description {
   opacity: 1;
   transform: translateY(-40%);
 }
@@ -96,11 +96,11 @@ section .skill .tech-back {
   overflow: hidden;
 }
 
-section .skill .tech-card:hover>.tech-back {
+section .skill .tech-card:is(:hover, :focus-visible)>.tech-back {
   height: 100%;
 }
 
-section .skill .tech-card:hover:after {
+section .skill .tech-card:is(:hover, :focus-visible):after {
   height: 100%;
 }
 
@@ -115,7 +115,7 @@ section .skill .tech-back::after {
   transition: transform 1.5s ease-out;
 }
 
-section .skill .tech-card:hover>.tech-back::after {
+section .skill .tech-card:is(:hover, :focus-visible)>.tech-back::after {
   transform: translate(0, -100%) scale(150%);
 }
 
@@ -126,7 +126,7 @@ section .skill .tech-card img {
   transition: filter 0.5s ease-in-out;
 }
 
-section .skill .tech-card:hover img {
+section .skill .tech-card:is(:hover, :focus-visible) img {
   filter: grayscale(0%) brightness(1);
 }
 
@@ -141,7 +141,7 @@ section .skill .tech-card .logo-text {
   transition: filter 0.5s ease-in-out;
 }
 
-section .skill .tech-card:hover .logo-text {
+section .skill .tech-card:is(:hover, :focus-visible) .logo-text {
   filter: grayscale(0%) brightness(1);
 }
 
@@ -254,7 +254,7 @@ section .skill .tech-card:hover .logo-text {
   }
 
   /* Disable expensive animations on mobile for performance */
-  section .skill .tech-card:hover > .tech-back::after {
+  section .skill .tech-card:is(:hover, :focus-visible) > .tech-back::after {
     transform: translate(0, -100%) scale(100%);
   }
 }
@@ -328,7 +328,7 @@ section .skill .tech-card:hover .logo-text {
   }
 
   /* Simplify hover effects on touch devices */
-  section .skill .tech-card:hover > .tech-back {
+  section .skill .tech-card:is(:hover, :focus-visible) > .tech-back {
     height: 100%;
   }
 
@@ -341,7 +341,7 @@ section .skill .tech-card:hover .logo-text {
     animation: none;
   }
 
-  section .skill .tech-card:hover .title {
+  section .skill .tech-card:is(:hover, :focus-visible) .title {
     animation: none;
   }
 }

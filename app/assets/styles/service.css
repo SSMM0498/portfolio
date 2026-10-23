@@ -39,7 +39,7 @@ section .services .glass-card:nth-child(3n) {
     margin-bottom: -2rem;
 }
 
-section .services .glass-card:hover {
+section .services .glass-card:is(:hover, :focus-visible, :has(:focus-visible)) {
     width: 40vw;
 }
 
@@ -48,7 +48,7 @@ section .services .glass-card:hover {
     width: 75vw;
   }
 
-  section .services .glass-card:hover {
+  section .services .glass-card:is(:hover, :focus-visible, :has(:focus-visible)) {
     width: 100vw;
   }
 }
@@ -65,7 +65,7 @@ section .services .glass-card::before {
     background-color: var(--prime);
 }
 
-section .services .glass-card h2 {
+section .services .glass-card h3 {
     font-size: 3rem;
     color: var(--second);
     width: 100%;
@@ -75,7 +75,7 @@ section .services .glass-card h2 {
     transform: rotate(-90deg) translate(0%, -250%);
 }
 
-section .services .glass-card:hover h2 {
+section .services .glass-card:is(:hover, :focus-visible, :has(:focus-visible)) h3 {
     transform: rotate(-25deg) translate(-12.5%, 125%);
 }
 
@@ -97,7 +97,7 @@ section .services .glass-info {
     transition: opacity 0.5s ease-in-out 0.25s, transform 0.5s ease-in-out 0.25s;
 }
 
-section .services .glass-card:hover .glass-info {
+section .services .glass-card:is(:hover, :focus-visible, :has(:focus-visible)) .glass-info {
     opacity: 1;
     transform: translateY(0);
 }

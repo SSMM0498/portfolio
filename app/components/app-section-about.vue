@@ -1,12 +1,13 @@
 <template>
-  <section id="#AboutMe">
-    <h1>{{ t('about.title') }}</h1>
-    <h2>
+  <section id="section-about" aria-labelledby="section-about-title">
+    <h2 id="section-about-title" class="section-title" tabindex="-1">{{ t('about.title') }}</h2>
+    <p class="section-subtitle">
       <span class="bio">{{ t('about.bio') }}</span>
       <span class="bio-short">{{ t('about.bioShort') }}</span>
-    </h2>
+    </p>
     <app-carousel name="about" :duration="70" class="skill">
-      <div class="tech-card" v-for="tech in techList" :key="tech.id">
+      <!-- Focusable, so the description shown on hover is also shown on keyboard focus -->
+      <div class="tech-card" v-for="tech in techList" :key="tech.id" tabindex="0" role="group" :aria-label="tech.name">
         <div class="tech-back"></div>
         <img v-if="tech.logo" :src="useAssets(`techs/${tech.logo}`)" :alt="tech.name" loading="lazy" decoding="async" />
         <span v-else class="logo-text" :style="{ '--tech-color': tech.color }">{{ tech.name }}</span>

@@ -73,6 +73,30 @@ a {
   text-decoration: none;
 }
 
+/* Keyboard focus is always visible */
+:focus-visible {
+  outline: 2px solid var(--main);
+  outline-offset: 3px;
+}
+
+/* Section titles get focus when their section is shown, for screen readers only */
+[tabindex="-1"]:focus {
+  outline: none;
+}
+
+/* Read by screen readers, not shown */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 ul {
   margin: 0;
   padding: 0;

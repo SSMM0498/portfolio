@@ -1,5 +1,6 @@
 <template>
-  <p class="tech-wall">
+  <!-- Decorative backdrop: 150 words screen readers should not go through -->
+  <p class="tech-wall" aria-hidden="true">
     <span v-for="(tech, key) in giantList" :key="key" class="tech" :class="{ active: key === current }"
       :style="{ '--tech-color': tech.color }">
       {{ tech.name }}

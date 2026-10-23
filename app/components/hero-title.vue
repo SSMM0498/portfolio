@@ -1,6 +1,7 @@
 <template>
-  <div class="content" :class="{ switch: isSwitching }">
-    <h1 ref="title" :style="{ '--dot-top-position': dotTopPosition }" class="title">{{ titles[current] }}</h1>
+  <!-- Decorative: the dotless ı would be read out letter by letter. The page heading is in app-section-hero. -->
+  <div class="content" :class="{ switch: isSwitching }" aria-hidden="true">
+    <p ref="title" :style="{ '--dot-top-position': dotTopPosition }" class="title">{{ titles[current] }}</p>
   </div>
 </template>
 <script setup lang="ts">

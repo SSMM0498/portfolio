@@ -1,14 +1,25 @@
 {
   "meta": {
     "title": "Serigne Saliou Mbacké Mbaye — Ingénieur de recherche en IA et télédétection",
-    "description": "Ingénieur de recherche en IA et télédétection satellite pour l'agriculture : estimation des rendements, classification des cultures et phénologie avec Google Earth Engine et le machine learning. Ouvert à un encadrement de thèse, à des collaborations de recherche et à des missions freelance."
+    "description": "Ingénieur de recherche en IA et télédétection satellite pour l'agriculture : estimation des rendements, classification des cultures et phénologie avec Google Earth Engine et le machine learning. Ouvert à un encadrement de thèse, à des collaborations de recherche et à des missions freelance.",
+    "jobTitle": "Ingénieur de recherche en IA et télédétection"
   },
   "controls": {
-    "switchLanguage": "Passer en anglais",
+    "switchLanguage": "EN, passer en anglais",
     "carouselPrev": "Faire défiler vers la gauche",
-    "carouselNext": "Faire défiler vers la droite"
+    "carouselNext": "Faire défiler vers la droite",
+    "nextSection": "Section suivante",
+    "newTab": "s'ouvre dans un nouvel onglet"
+  },
+  "error": {
+    "notFound": "Cette page n'existe pas.",
+    "generic": "Une erreur est survenue.",
+    "back": "Retour à l'accueil"
   },
   "menu": {
+    "label": "Sections",
+    "open": "Ouvrir le menu",
+    "close": "Fermer le menu",
     "home": "Accueil",
     "about": "À propos",
     "expertise": "Expertise",
@@ -146,7 +157,9 @@
     "subject": "Objet",
     "message": "Votre message",
     "success": "Merci ! Votre message a bien été envoyé. Je vous réponds rapidement.",
-    "error": "Une erreur est survenue. Avez-vous rempli tous les champs ?",
+    "error": "Votre message n'a pas pu être envoyé. Réessayez plus tard, ou écrivez-moi sur LinkedIn.",
+    "errorInvalid": "Vérifiez les champs signalés.",
+    "errorRateLimited": "Trop de messages ont été envoyés. Réessayez dans une heure.",
     "submit": "Envoyer",
     "loading": "Envoi..."
   }

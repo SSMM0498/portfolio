@@ -1,7 +1,7 @@
 <template>
   <aside class="socials">
-    <a v-for="social in links" :key="social.name" :href="social.url" :aria-label="social.name" target="_blank"
-      rel="noopener" @click="trackSocialLink(social.name)">
+    <a v-for="social in links" :key="social.name" :href="social.url" :aria-label="`${social.name} (${t('controls.newTab')})`"
+      target="_blank" rel="noopener noreferrer" @click="trackSocialLink(social.name)">
       <UIcon :name="social.icon" />
       <span class="label">{{ social.name }}</span>
     </a>
@@ -10,6 +10,7 @@
 <script setup lang="ts">
 import socials from '~/utils/socials'
 
+const { t } = useI18n()
 const { $posthog } = useNuxtApp()
 const links = socials.filter(social => social.url)
 
@@ -58,11 +59,11 @@ const trackSocialLink = (socialPlatform: string) => {
   transition: all 0.3s ease;
 }
 
-.socials a:hover {
+.socials a:is(:hover, :focus-visible) {
   color: var(--main);
 }
 
-.socials a:hover > .label {
+.socials a:is(:hover, :focus-visible) > .label {
   opacity: 1;
   transform: translateX(0);
 }
