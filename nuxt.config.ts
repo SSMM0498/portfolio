@@ -30,9 +30,14 @@ export default defineNuxtConfig({
   // @nuxt/fonts is pulled in by @nuxt/ui, but it only reads the `fonts` key below
   // when it is a registered module, so it is listed explicitly.
   modules: ['@nuxt/ui', '@nuxt/fonts', '@nuxtjs/i18n'],
+  // Follows the system theme, live, until the visitor picks one with the theme button (then remembered).
+  // Dark when the system theme cannot be detected.
   colorMode: {
-    preference: 'dark',
+    preference: 'system',
     fallback: 'dark',
+    // Not the default key: when dark was the default, every visit stored "dark" under it,
+    // which would keep past visitors on dark instead of following their system.
+    storageKey: 'portfolio-color-mode',
   },
   i18n: {
     baseUrl: siteUrl,

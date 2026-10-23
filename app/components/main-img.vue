@@ -19,8 +19,8 @@
   background-size: contain;
 }
 
-/* Dark is the default preference, so the dark avatar is the one shown until a
-   stored light theme says otherwise. */
+/* The dark avatar is shown unless the theme is light. html.light is set before the
+   first paint, from the system theme or a stored choice, so only one avatar is fetched. */
 .avatar-dark {
   display: block;
   background-image: url("~/assets/img/avatar_black.webp");
