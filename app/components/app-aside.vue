@@ -1,7 +1,7 @@
 <template>
   <aside class="socials">
     <a v-for="social in links" :key="social.name" :href="social.url" :aria-label="social.name" target="_blank"
-      rel="noopener">
+      rel="noopener" @click="trackSocialLink(social.name)">
       <UIcon :name="social.icon" />
       <span class="label">{{ social.name }}</span>
     </a>
@@ -10,7 +10,12 @@
 <script setup lang="ts">
 import socials from '~/utils/socials'
 
+const { $posthog } = useNuxtApp()
 const links = socials.filter(social => social.url)
+
+const trackSocialLink = (socialPlatform: string) => {
+  $posthog?.capture('social_link_clicked', { social_platform: socialPlatform })
+}
 </script>
 <style scoped lang="css">
 .socials {

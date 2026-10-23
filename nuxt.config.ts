@@ -42,6 +42,12 @@ export default defineNuxtConfig({
     MAIL_USER: process.env.MAIL_USER,
     MAIL_PASSWORD: process.env.MAIL_PASSWORD,
     CONTACT_MAIL: process.env.CONTACT_MAIL,
+    public: {
+      posthog: {
+        publicKey: process.env.NUXT_PUBLIC_POSTHOG_PROJECT_TOKEN,
+        host: process.env.NUXT_PUBLIC_POSTHOG_HOST,
+      },
+    },
     host: process.env.HOST || '0.0.0.0',
     port: Number(process.env.PORT) || 3000,
   },

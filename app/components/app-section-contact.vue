@@ -22,13 +22,14 @@
       <p class="contact-text">
         <span>{{ t('contact.lead') }}</span>
         {{ t('contact.text') }}
-        <a class="cv-link" href="/cv/serigne-saliou-mbaye-cv.pdf" download>{{ t('contact.cv') }}</a>
+        <a class="cv-link" href="/cv/serigne-saliou-mbaye-cv.pdf" download @click="trackCvDownload">{{ t('contact.cv') }}</a>
       </p>
     </div>
   </section>
 </template>
 <script setup lang="ts">
 const { t } = useI18n()
+const { $posthog } = useNuxtApp()
 const loading = ref(false)
 const success = ref(false)
 const errored = ref(false)
@@ -40,12 +41,17 @@ const form = ref({
   message: '',
 });
 
+const trackCvDownload = () => {
+  $posthog?.capture('cv_downloaded')
+}
+
 const sendMessage = async () => {
   loading.value = true
   await $fetch('/api/contact', {
     method: 'POST',
     body: form.value,
   }).then(() => {
+    $posthog?.capture('contact_form_submitted')
     errored.value = false;
     success.value = true;
     form.value = {
@@ -57,6 +63,7 @@ const sendMessage = async () => {
     };
   })
     .catch((_error: any) => {
+      $posthog?.capture('contact_form_submission_failed')
       errored.value = true
       success.value = false
     })

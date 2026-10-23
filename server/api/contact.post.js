@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import validator from 'validator';
+import { capturePostHogLog } from '~~/server/utils/posthog-log-capture';
 const config = useRuntimeConfig();
 
 const transporter = nodemailer.createTransport({
@@ -21,6 +22,11 @@ export default defineEventHandler(async (event) => {
         throw createError({ statusCode: 400, statusMessage: 'Invalid form data', data: errors });
     }
 
+    await capturePostHogLog('info', 'Contact form validation completed', {
+        route: '/api/contact',
+        outcome: 'valid',
+    });
+
     try {
         const mail = await transporter.sendMail({
             // Sending as the visitor would fail SPF/DMARC: send from our own mailbox, reply to the visitor
@@ -34,7 +40,15 @@ export default defineEventHandler(async (event) => {
 
         console.log('Message sent: %s', mail.messageId);
         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(mail));
+        await capturePostHogLog('info', 'Contact mail delivered', {
+            route: '/api/contact',
+            outcome: 'delivered',
+        });
     } catch (error) {
+        await capturePostHogLog('error', 'Contact mail delivery failed', {
+            route: '/api/contact',
+            outcome: 'failed',
+        });
         console.error('Contact mail failed:', error);
         throw createError({ statusCode: 500, statusMessage: 'Message could not be sent' });
     }
